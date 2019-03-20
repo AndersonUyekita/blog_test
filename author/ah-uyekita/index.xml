@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Ah Uyekita on Meghna</title>
-    <link>/blog_test/author/ah-uyekita/</link>
+    <link>/notebooks/author/ah-uyekita/</link>
     <description>Recent content in Ah Uyekita on Meghna</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Wed, 20 Mar 2019 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="/blog_test/author/ah-uyekita/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="/notebooks/author/ah-uyekita/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Como criar um Blogdown</title>
-      <link>/blog_test/blog/como-criar-um-blogdown/</link>
+      <link>/notebooks/blog/como-criar-um-blogdown/</link>
       <pubDate>Wed, 20 Mar 2019 00:00:00 +0000</pubDate>
       
-      <guid>/blog_test/blog/como-criar-um-blogdown/</guid>
+      <guid>/notebooks/blog/como-criar-um-blogdown/</guid>
       <description>Esse é o primeiro post deste Blogdown e se destinará basicamente a documentar como ele foi criado.</description>
     </item>
     

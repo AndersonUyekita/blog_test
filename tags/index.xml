@@ -2,84 +2,84 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Tags on Meghna</title>
-    <link>/blog_test/tags/</link>
+    <link>/notebooks/tags/</link>
     <description>Recent content in Tags on Meghna</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Wed, 20 Mar 2019 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="/blog_test/tags/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="/notebooks/tags/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Blogdown</title>
-      <link>/blog_test/tags/blogdown/</link>
+      <link>/notebooks/tags/blogdown/</link>
       <pubDate>Wed, 20 Mar 2019 00:00:00 +0000</pubDate>
       
-      <guid>/blog_test/tags/blogdown/</guid>
+      <guid>/notebooks/tags/blogdown/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Golang</title>
-      <link>/blog_test/tags/golang/</link>
+      <link>/notebooks/tags/golang/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>/blog_test/tags/golang/</guid>
+      <guid>/notebooks/tags/golang/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Hugo</title>
-      <link>/blog_test/tags/hugo/</link>
+      <link>/notebooks/tags/hugo/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>/blog_test/tags/hugo/</guid>
+      <guid>/notebooks/tags/hugo/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Plot</title>
-      <link>/blog_test/tags/plot/</link>
+      <link>/notebooks/tags/plot/</link>
       <pubDate>Thu, 23 Jul 2015 21:13:14 -0500</pubDate>
       
-      <guid>/blog_test/tags/plot/</guid>
+      <guid>/notebooks/tags/plot/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Programming</title>
-      <link>/blog_test/tags/programming/</link>
+      <link>/notebooks/tags/programming/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>/blog_test/tags/programming/</guid>
+      <guid>/notebooks/tags/programming/</guid>
       <description></description>
     </item>
     
     <item>
       <title>R Markdown</title>
-      <link>/blog_test/tags/r-markdown/</link>
+      <link>/notebooks/tags/r-markdown/</link>
       <pubDate>Thu, 23 Jul 2015 21:13:14 -0500</pubDate>
       
-      <guid>/blog_test/tags/r-markdown/</guid>
+      <guid>/notebooks/tags/r-markdown/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Regression</title>
-      <link>/blog_test/tags/regression/</link>
+      <link>/notebooks/tags/regression/</link>
       <pubDate>Thu, 23 Jul 2015 21:13:14 -0500</pubDate>
       
-      <guid>/blog_test/tags/regression/</guid>
+      <guid>/notebooks/tags/regression/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Theme</title>
-      <link>/blog_test/tags/theme/</link>
+      <link>/notebooks/tags/theme/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>/blog_test/tags/theme/</guid>
+      <guid>/notebooks/tags/theme/</guid>
       <description></description>
     </item>
     
