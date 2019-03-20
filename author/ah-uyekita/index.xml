@@ -2,39 +2,39 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Ah Uyekita on Meghna</title>
-    <link>https://andersonuyekita.github.io/blog_test/author/ah-uyekita/</link>
+    <link>/blog_test/author/ah-uyekita/</link>
     <description>Recent content in Ah Uyekita on Meghna</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Wed, 20 Mar 2019 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="https://andersonuyekita.github.io/blog_test/author/ah-uyekita/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="/blog_test/author/ah-uyekita/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Como criar um Blogdown</title>
-      <link>https://andersonuyekita.github.io/blog_test/blog/como-criar-um-blogdown/</link>
+      <link>/blog_test/blog/como-criar-um-blogdown/</link>
       <pubDate>Wed, 20 Mar 2019 00:00:00 +0000</pubDate>
       
-      <guid>https://andersonuyekita.github.io/blog_test/blog/como-criar-um-blogdown/</guid>
+      <guid>/blog_test/blog/como-criar-um-blogdown/</guid>
       <description>Esse é o primeiro post deste Blogdown e se destinará basicamente a documentar como ele foi criado.</description>
     </item>
     
     <item>
       <title>Onde isso é criado</title>
-      <link>https://andersonuyekita.github.io/blog_test/blog/onde-isso-%C3%A9-criado/</link>
+      <link>/blog_test/blog/onde-isso-%C3%A9-criado/</link>
       <pubDate>Wed, 20 Mar 2019 00:00:00 +0000</pubDate>
       
-      <guid>https://andersonuyekita.github.io/blog_test/blog/onde-isso-%C3%A9-criado/</guid>
+      <guid>/blog_test/blog/onde-isso-%C3%A9-criado/</guid>
       <description>VAmos fazer um teste</description>
     </item>
     
     <item>
       <title>vamos fazer um teste para blog</title>
-      <link>https://andersonuyekita.github.io/blog_test/blog/vamos-fazer-um-teste-para-blog/</link>
+      <link>/blog_test/blog/vamos-fazer-um-teste-para-blog/</link>
       <pubDate>Wed, 20 Mar 2019 00:00:00 +0000</pubDate>
       
-      <guid>https://andersonuyekita.github.io/blog_test/blog/vamos-fazer-um-teste-para-blog/</guid>
+      <guid>/blog_test/blog/vamos-fazer-um-teste-para-blog/</guid>
       <description>Maaaaaaano!</description>
     </item>
     
