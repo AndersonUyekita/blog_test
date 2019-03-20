@@ -59,13 +59,13 @@
   </url>
   
   <url>
-    <loc>/blog_test/categories/blogdown/</loc>
+    <loc>/blog_test/tags/blogdown/</loc>
     <lastmod>2019-03-20T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>/blog_test/tags/blogdown/</loc>
+    <loc>/blog_test/categories/blogdown/</loc>
     <lastmod>2019-03-20T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
