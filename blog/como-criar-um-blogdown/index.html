@@ -90,7 +90,7 @@
                     <li class="list-inline-item"><a href="/author/ah-uyekita">AH Uyekita</a></li>
                     <li class="list-inline-item">Wednesday, Mar 20, 2019</li>
                 </ul>
-                <img class="img-fluid mb-50" src="/blog_test/images/blog/blog-post-3.jpg" alt="blog-image">
+                <img class="img-fluid mb-50" src="/blog_test/images/blog/2019-03-20-como-criar-um-blogdown.pt/cover.jpg" alt="blog-image">
             </div>
             <div class="col-lg-8 offset-lg-2">
                 <div class="post-single-content">
@@ -98,7 +98,7 @@
 
 <p>Esse é o primeiro <em>post</em> deste <a href="https://bookdown.org/yihui/blogdown/">Blogdown</a> e se destinará basicamente a documentar como ele foi criado. Note que o <code>Blogdown</code> (veja a descrição no <a href="https://cran.r-project.org/web/packages/blogdown/index.html">CRAN</a>) também é o nome do <em>package</em> para R desenvolvido por Yihui Xie, Amber Thomas e Alison Presmanes Hill.</p>
 
-<div class="alert alert-secondary" role="alert">
+<div class="alert alert-dark" role="alert">
 <h4>Resumo</h4>
 <ul>
 <li>Escolha de um <em>template</em>;</li>
@@ -145,7 +145,7 @@ install.packages(<span style="color:#ed9d13">&#34;blogdown&#34;</span>)</code></
 
 <p>Escolhi o <code>meghna</code>, pois faz parte de uma nova geração de blogs disponíveis no Hugo. A instalação está descrita no link do tema.</p>
 
-<p><img src="/blog_test/images/blog/2019-03-20-como-criar-um-blogdown.pt/figure_2_meghna_1.png.png" alt="Figura 2 - Modelo Escolhido." width="100%" height="100%"/></p>
+<p><img src="/blog_test/images/blog/2019-03-20-como-criar-um-blogdown.pt/figure_2_meghna_1.png" alt="Figura 2 - Modelo Escolhido." width="100%" height="100%"/></p>
 
 <p><a href="https://themes.gohugo.io/meghna-hugo/">https://themes.gohugo.io/meghna-hugo/</a></p>
 
@@ -245,7 +245,7 @@ $ git clone git@github.com:themefisher/meghna-hugo.git</code></pre></div>
 
 <h4 id="passo-1-1">Passo 1</h4>
 
-<p>Você deve criar um <em>repository</em> para hospedar o blog. Crie sem README e sem o gitignore para não ter que fazer um <code>git pull</code>.</p>
+<p>Você deve criar um <em>repository</em> para hospedar o blog. Crie sem <code>README.md</code> e sem o <code>.gitignore</code> para não ter que fazer um <code>git pull</code>.</p>
 
 <p><center>
 <img src="/blog_test/images/blog/2019-03-20-como-criar-um-blogdown.pt/figura_10_repository.png" alt="Figura 9 - Metadados" width="50%" height="50%"/>
@@ -253,8 +253,8 @@ $ git clone git@github.com:themefisher/meghna-hugo.git</code></pre></div>
 
 <h4 id="passo-2-1">Passo 2</h4>
 
-<p>Inicialize o <code>git</code> <em>somente</em> da pasta <code>public</code>.</p>
-<div class="highlight"><pre style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-git" data-lang="git"># Estrutura de pastas do Blogdown
+<p>Inicialize o <code>git</code> <strong>somente</strong> da pasta <code>public</code>.</p>
+<div class="highlight"><pre style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-git" data-lang="git"># Estrutura das pastas do Blogdown.
 
 pasta_pai
 |
@@ -263,11 +263,53 @@ pasta_pai
        +- Public</code></pre></div>
 <h4 id="passo-3-1">Passo 3</h4>
 
-<p>Caso você tenha criado o repositório <em>sem</em> o README, basta fazer um <code>git push</code>.</p>
-
+<p>Antes de subir as páginas para o Github Pages, deve-se configurar o <code>config.toml</code> para que ele consiga exibir a página. Abra-o e já na primeira linha edite o <code>baseURL</code> com o nome do respositório que você criou no Github.</p>
+<div class="highlight"><pre style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#999;font-style:italic"># Insira o seu nome e substitua com o nome do seu blog.</span>
+baseURL = <span style="color:#ed9d13">&#34;https://seu_nome_aqui.github.io/meu_blog/&#34;</span></code></pre></div>
 <h4 id="passo-4-1">Passo 4</h4>
 
-<p>A configuração para criar um Github Pages é bem simples.</p>
+<p>Caso você tenha criado o repositório <em>sem</em> o README, basta fazer um <code>git push</code>.</p>
+<div class="highlight"><pre style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#999;font-style:italic"># Para inicializar o repositório.</span>
+git init</code></pre></div>
+<p>Agora para pôr os arquivos no <em>stage</em> e depois fazer o <em>commit</em>.</p>
+<div class="highlight"><pre style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-py" data-lang="py"><span style="color:#999;font-style:italic"># Adicionar todos os arquivos no stage.</span>
+git add -A
+
+<span style="color:#999;font-style:italic"># Fazer o commit e colocar o comentário.</span>
+git commit -m <span style="color:#ed9d13">&#34;Meu primeiro blog ::rocket::&#34;</span></code></pre></div>
+<p>Por fim, já é possível fazer o push.</p>
+<div class="highlight"><pre style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#999;font-style:italic"># Subir arquivos para o repositório no Github.</span>
+git push https://github.com/seu_nome_aqui/meu_blog master</code></pre></div>
+<p>Confira se os arquivos foram transferidos para o seu repositório.</p>
+
+<h4 id="passo-5">Passo 5</h4>
+
+<p>A configuração para criar um Github Pages é bem simples. Vá em <mark>Settings.</mark>.</p>
+
+<p><center>
+<img src="/blog_test/images/blog/2019-03-20-como-criar-um-blogdown.pt/figura_11_config_repository.png" alt="Figura 11 - Metadados" width="50%" height="50%"/>
+</center></p>
+
+<p>Após isso, busque por <code>Github Pages</code> e selecione <mark>Source</mark> como <code>master branch</code>.</p>
+
+<p><center>
+<img src="/blog_test/images/blog/2019-03-20-como-criar-um-blogdown.pt/figura_12_config_repository_2.png" alt="Figura 12 - Metadados" width="50%" height="50%"/>
+</center></p>
+
+<p><br></p>
+
+<hr />
+
+<h2 id="8-testando">8. Testando</h2>
+
+<p>O Github Pages pode demorar alguns minutinos até reconhecer as mudanças no seu site/blog, logo não espere que seja imediato todas as alterações que você faça.</p>
+
+<div class="alert alert-info" role="alert">
+<h4>Conclusões</h4>
+
+Foi possível criar um blog completamente funcional usando a IDE RStudio.
+
+</div>
 
                     
                         
