@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Scikit Learn on Meghna</title>
-    <link>https://andersonuyekita.github.io/notebooks/tags/scikit-learn/</link>
-    <description>Recent content in Scikit Learn on Meghna</description>
+    <title>Udacity on Meghna</title>
+    <link>https://andersonuyekita.github.io/notebooks/tags/udacity/</link>
+    <description>Recent content in Udacity on Meghna</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Wed, 20 Mar 2019 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="https://andersonuyekita.github.io/notebooks/tags/scikit-learn/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://andersonuyekita.github.io/notebooks/tags/udacity/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
@@ -18,6 +18,15 @@
       
       <guid>https://andersonuyekita.github.io/notebooks/blog/migrando-cross-validation-para-model-selection/</guid>
       <description>As versões recentes de Scikit Learn (0.23.0) não possuem mais o módulo cross_validation, desta maneira algumas aplicações de Python podem ter o seu funcionamento afetado.</description>
+    </item>
+    
+    <item>
+      <title>Criando um Ambiente Python 2</title>
+      <link>https://andersonuyekita.github.io/notebooks/blog/criando-um-ambiente-python-2/</link>
+      <pubDate>Wed, 20 Mar 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://andersonuyekita.github.io/notebooks/blog/criando-um-ambiente-python-2/</guid>
+      <description>Esse post aborda a criação de um novo ambiente no Anaconda, na qual possibilitará ao usuário a usar diferentes versões de Python numa mesma máquina.</description>
     </item>
     
   </channel>
