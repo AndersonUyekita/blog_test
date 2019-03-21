@@ -1,67 +1,67 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Author on Meghna</title>
-    <link>https://andersonuyekita.github.io/notebooks/author/</link>
-    <description>Recent content in Author on Meghna</description>
+    <title>Author on AH Uyekita</title>
+    <link>/notebooks/author/</link>
+    <description>Recent content in Author on AH Uyekita</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Wed, 12 Sep 2018 12:52:36 +0600</lastBuildDate>
     
-	<atom:link href="https://andersonuyekita.github.io/notebooks/author/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="/notebooks/author/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title></title>
-      <link>https://andersonuyekita.github.io/notebooks/author/jamica-jock/</link>
+      <link>/notebooks/author/jamica-jock/</link>
       <pubDate>Wed, 12 Sep 2018 12:52:36 +0600</pubDate>
       
-      <guid>https://andersonuyekita.github.io/notebooks/author/jamica-jock/</guid>
+      <guid>/notebooks/author/jamica-jock/</guid>
       <description>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin eu magna arcu.</description>
     </item>
     
     <item>
       <title></title>
-      <link>https://andersonuyekita.github.io/notebooks/author/john-doe/</link>
+      <link>/notebooks/author/john-doe/</link>
       <pubDate>Wed, 12 Sep 2018 14:51:12 +0600</pubDate>
       
-      <guid>https://andersonuyekita.github.io/notebooks/author/john-doe/</guid>
+      <guid>/notebooks/author/john-doe/</guid>
       <description>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam pulvinar turpis ac est vulputate egestas at vitae nunc.</description>
     </item>
     
     <item>
       <title></title>
-      <link>https://andersonuyekita.github.io/notebooks/author/somrat/</link>
+      <link>/notebooks/author/somrat/</link>
       <pubDate>Wed, 12 Sep 2018 14:39:16 +0600</pubDate>
       
-      <guid>https://andersonuyekita.github.io/notebooks/author/somrat/</guid>
+      <guid>/notebooks/author/somrat/</guid>
       <description>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin sit amet vulputate augue.</description>
     </item>
     
     <item>
       <title>Ah Uyekita</title>
-      <link>https://andersonuyekita.github.io/notebooks/author/ah-uyekita/</link>
-      <pubDate>Wed, 20 Mar 2019 00:00:00 +0000</pubDate>
+      <link>/notebooks/author/ah-uyekita/</link>
+      <pubDate>Thu, 21 Mar 2019 00:00:00 +0000</pubDate>
       
-      <guid>https://andersonuyekita.github.io/notebooks/author/ah-uyekita/</guid>
+      <guid>/notebooks/author/ah-uyekita/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Frida Gomam</title>
-      <link>https://andersonuyekita.github.io/notebooks/author/frida-gomam/</link>
+      <link>/notebooks/author/frida-gomam/</link>
       <pubDate>Thu, 23 Jul 2015 21:13:14 -0500</pubDate>
       
-      <guid>https://andersonuyekita.github.io/notebooks/author/frida-gomam/</guid>
+      <guid>/notebooks/author/frida-gomam/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Themefisher</title>
-      <link>https://andersonuyekita.github.io/notebooks/author/themefisher/</link>
+      <link>/notebooks/author/themefisher/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://andersonuyekita.github.io/notebooks/author/themefisher/</guid>
+      <guid>/notebooks/author/themefisher/</guid>
       <description></description>
     </item>
     

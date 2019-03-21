@@ -1,40 +1,58 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Blogdown on Meghna</title>
-    <link>https://andersonuyekita.github.io/notebooks/categories/blogdown/</link>
-    <description>Recent content in Blogdown on Meghna</description>
+    <title>Blogdown on AH Uyekita</title>
+    <link>/notebooks/categories/blogdown/</link>
+    <description>Recent content in Blogdown on AH Uyekita</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 20 Mar 2019 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 21 Mar 2019 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="https://andersonuyekita.github.io/notebooks/categories/blogdown/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="/notebooks/categories/blogdown/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
+      <title>Como usar o GridSearchCV</title>
+      <link>/notebooks/blog/como-usar-o-gridsearchcv/</link>
+      <pubDate>Thu, 21 Mar 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/notebooks/blog/como-usar-o-gridsearchcv/</guid>
+      <description>O GridSearchCV é uma ferramenta para automatizar o processo de ajuste dos parâmetros de um algoritmo, ele fará diversas combinações</description>
+    </item>
+    
+    <item>
+      <title>Estrutura do Blogdown</title>
+      <link>/notebooks/blog/estrutura-do-blogdown/</link>
+      <pubDate>Thu, 21 Mar 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/notebooks/blog/estrutura-do-blogdown/</guid>
+      <description>Uma breve intrudoção de como funciona o Blogdown no que tange o gerenciamento de arquivos.</description>
+    </item>
+    
+    <item>
       <title>Atualizando cross_validation para model_selection</title>
-      <link>https://andersonuyekita.github.io/notebooks/blog/migrando-cross-validation-para-model-selection/</link>
+      <link>/notebooks/blog/migrando-cross-validation-para-model-selection/</link>
       <pubDate>Wed, 20 Mar 2019 00:00:00 +0000</pubDate>
       
-      <guid>https://andersonuyekita.github.io/notebooks/blog/migrando-cross-validation-para-model-selection/</guid>
+      <guid>/notebooks/blog/migrando-cross-validation-para-model-selection/</guid>
       <description>As versões recentes de Scikit Learn (0.23.0) não possuem mais o módulo cross_validation, desta maneira algumas aplicações de Python podem ter o seu funcionamento afetado.</description>
     </item>
     
     <item>
       <title>Como criar um Blogdown</title>
-      <link>https://andersonuyekita.github.io/notebooks/blog/como-criar-um-blogdown/</link>
+      <link>/notebooks/blog/como-criar-um-blogdown/</link>
       <pubDate>Wed, 20 Mar 2019 00:00:00 +0000</pubDate>
       
-      <guid>https://andersonuyekita.github.io/notebooks/blog/como-criar-um-blogdown/</guid>
+      <guid>/notebooks/blog/como-criar-um-blogdown/</guid>
       <description>Esse é o primeiro post deste Blogdown e se destinará basicamente a documentar como ele foi criado.</description>
     </item>
     
     <item>
       <title>Criando um Ambiente Python 2</title>
-      <link>https://andersonuyekita.github.io/notebooks/blog/criando-um-ambiente-python-2/</link>
+      <link>/notebooks/blog/criando-um-ambiente-python-2/</link>
       <pubDate>Wed, 20 Mar 2019 00:00:00 +0000</pubDate>
       
-      <guid>https://andersonuyekita.github.io/notebooks/blog/criando-um-ambiente-python-2/</guid>
+      <guid>/notebooks/blog/criando-um-ambiente-python-2/</guid>
       <description>Esse post aborda a criação de um novo ambiente no Anaconda, na qual possibilitará ao usuário a usar diferentes versões de Python numa mesma máquina.</description>
     </item>
     
