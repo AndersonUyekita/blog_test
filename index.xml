@@ -35,7 +35,7 @@
       <pubDate>Wed, 20 Mar 2019 00:00:00 +0000</pubDate>
       
       <guid>/notebooks/blog/migrando-cross-validation-para-model-selection/</guid>
-      <description>As novas versões de Scikit Learn não possuem mais o módulo cross_validation, desta maneira algumas aplicações de Python podem ter o seu funcionamento afetado</description>
+      <description>As versões recentes de Scikit Learn (0.23.0) não possuem mais o módulo cross_validation, desta maneira algumas aplicações de Python podem ter o seu funcionamento afetado.</description>
     </item>
     
     <item>

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html class="no-js" lang="en-us" scroll-behavior="smooth"><head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <meta name="description" content="As novas versões de Scikit Learn não possuem mais o módulo cross_validation, desta maneira algumas aplicações de Python podem ter o seu funcionamento afetado">
+    <meta name="description" content="As versões recentes de Scikit Learn (0.23.0) não possuem mais o módulo cross_validation, desta maneira algumas aplicações de Python podem ter o seu funcionamento afetado.">
     <meta name="author" content="AH Uyekita">
 
     <!-- Mobile Specific Meta -->
@@ -90,11 +90,11 @@
                     <li class="list-inline-item"><a href="/author/ah-uyekita">AH Uyekita</a></li>
                     <li class="list-inline-item">Wednesday, Mar 20, 2019</li>
                 </ul>
-                
+                <img class="img-fluid mb-50" src="/notebooks/images/blog/2019-03-20-migrando-cross-validation-para-model-selection/cover.jpg" alt="blog-image">
             </div>
             <div class="col-lg-8 offset-lg-2">
                 <div class="post-single-content">
-                    <p>As novas versões de Scikit Learn não possuem mais o módulo <code>cross_validation</code>, desta maneira algumas aplicações de Python podem ter o seu funcionamento afetado</p>
+                    <p>As versões recentes de Scikit Learn (<kbd>0.23.0</kbd>) não possuem mais o módulo <code>cross_validation</code>, desta maneira algumas aplicações de Python podem ter o seu funcionamento afetado. O ajuste proposto nesse <em>post</em> é para que as aplicações que usam o <code>StratifiedShuffleSplit</code> voltem a funcionar corretamente.</p>
 
 <div class="alert alert-dark" role="alert">
 <h4>Resumo</h4>
