@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Anaconda on Meghna</title>
+    <link>https://andersonuyekita.github.io/notebooks/tags/anaconda/</link>
+    <description>Recent content in Anaconda on Meghna</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 20 Mar 2019 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://andersonuyekita.github.io/notebooks/tags/anaconda/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Criando um Ambiente Python 2</title>
+      <link>https://andersonuyekita.github.io/notebooks/blog/criando-um-ambiente-python-2/</link>
+      <pubDate>Wed, 20 Mar 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://andersonuyekita.github.io/notebooks/blog/criando-um-ambiente-python-2/</guid>
+      <description>Esse post aborda a criação de um novo ambiente no Anaconda, na qual possibilitará ao usuário a usar diferentes versões de Python numa mesma máquina.</description>
+    </item>
+    
+  </channel>
+</rss>
