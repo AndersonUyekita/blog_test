@@ -2,30 +2,30 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Blogdown on AH Uyekita</title>
-    <link>https://andersonuyekita.github.io/notebooks/tags/blogdown/</link>
+    <link>/notebooks/tags/blogdown/</link>
     <description>Recent content in Blogdown on AH Uyekita</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Thu, 21 Mar 2019 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="https://andersonuyekita.github.io/notebooks/tags/blogdown/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="/notebooks/tags/blogdown/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Estrutura do Blogdown</title>
-      <link>https://andersonuyekita.github.io/notebooks/blog/estrutura-do-blogdown/</link>
+      <link>/notebooks/blog/estrutura-do-blogdown/</link>
       <pubDate>Thu, 21 Mar 2019 00:00:00 +0000</pubDate>
       
-      <guid>https://andersonuyekita.github.io/notebooks/blog/estrutura-do-blogdown/</guid>
+      <guid>/notebooks/blog/estrutura-do-blogdown/</guid>
       <description>Uma breve intrudoção de como funciona o Blogdown no que tange o gerenciamento de arquivos.</description>
     </item>
     
     <item>
       <title>Como criar um Blogdown</title>
-      <link>https://andersonuyekita.github.io/notebooks/blog/como-criar-um-blogdown/</link>
+      <link>/notebooks/blog/como-criar-um-blogdown/</link>
       <pubDate>Wed, 20 Mar 2019 00:00:00 +0000</pubDate>
       
-      <guid>https://andersonuyekita.github.io/notebooks/blog/como-criar-um-blogdown/</guid>
+      <guid>/notebooks/blog/como-criar-um-blogdown/</guid>
       <description>Esse é o primeiro post deste Blogdown e se destinará basicamente a documentar como ele foi criado.</description>
     </item>
     

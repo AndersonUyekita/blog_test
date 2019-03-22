@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html class="no-js" lang="en-us" scroll-behavior="smooth"><head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <meta name="description" content="O GridSearchCV é uma ferramenta usada para automatizar o processo de ajuste dos parâmetros de um algoritmo, pois ele fará de maneira sistemática diversas combinações dos parâmetros e os armazenará num único objeto.">
+    <meta name="description" content="O GridSearchCV é uma ferramenta usada para automatizar o processo de ajuste dos parâmetros de um algoritmo, pois ele fará de maneira sistemática diversas combinações dos parâmetros e depois de avaliá-los os armazenará num único objeto.">
     <meta name="author" content="AH Uyekita">
 
     <!-- Mobile Specific Meta -->
@@ -110,14 +110,16 @@
                 <div class="post-single-content">
                     
 
-<p>O <code>GridSearchCV</code> é uma ferramenta usada para automatizar o processo de ajuste dos parâmetros de um algoritmo, pois ele fará de maneira sistemática diversas combinações dos parâmetros e os armazenará num único objeto.</p>
+<p>O <code>GridSearchCV</code> é uma ferramenta usada para automatizar o processo de ajuste dos parâmetros de um algoritmo, pois ele fará de maneira sistemática diversas combinações dos parâmetros e depois de avaliá-los os armazenará num único objeto.</p>
+
+<p>Foi disponinilizado o Jupter Notebook com detalhes pormenorizados do uso do <code>GridSearchCV</code>, bem como exemplos didáticos.</p>
 
 <div class="alert alert-dark" role="alert">
   <h4><strong><p class="text-secondary">Resumo</p></strong></h4>
   <ul>
-    <li></li>
-    <li></li>
-    <li></li>
+    <li>Exemplo disponibilizado em <a href="https://mybinder.org/v2/gh/AndersonUyekita/notebooks/master?filepath=blog/2019-03-21-como-usar-o-gridsearchcv.pt.ipynb" target="_blank">Jupyter Notebook</a>;</li>
+    <li>Aplicação do <code>GridSearchCV</code> para o <em>tuning</em> dos parâmetros;</li>
+    <li>Apresentação e configuração dos parâmetros <code>scoring</code>, <code>cv</code> e <code>refit</code>.</li>
   </ul>
 </div>
 
@@ -127,11 +129,35 @@
 
 <h2 id="gridsearchcv">GridSearchCV</h2>
 
-<p>O <code>GridSearchCV</code> é um módulo do <samp>Scikit Learn</samp> (Leia mais sobre ele <a href="https://scikit-learn.org/stable/modules/generated/sklearn.model_selection.GridSearchCV.html">aqui</a>) e é amplamente usado para automatizar grande parte do processo de <em>tuning</em>. O objetivo primário do <code>GridSearchCV</code> será a criação de combinações e posteriormente avaliá-las.</p>
+<p>O <code>GridSearchCV</code> é um módulo do <samp>Scikit Learn</samp> (Leia mais sobre ele <a href="https://scikit-learn.org/stable/modules/generated/sklearn.model_selection.GridSearchCV.html">aqui</a>) e é amplamente usado para automatizar grande parte do processo de <em>tuning</em>. O objetivo primário do <code>GridSearchCV</code> é a criação de combinações de parâmetros para posteriormente avaliá-las.</p>
 
+<h4 id="jupyter-notebook">Jupyter Notebook</h4>
+
+<p>Há um arquivo <a href="https://mybinder.org/v2/gh/AndersonUyekita/notebooks/master?filepath=blog/2019-03-21-como-usar-o-gridsearchcv.pt.ipynb" target="_blank">Jupyter Notebook</a> para acompanhar esse <em>post</em> com todos os detalhes de codificação.</p>
+
+<h4 id="dataset"><em>Dataset</em></h4>
+
+<p>Será usado um <em>toy dataset</em> presente no próprio Scikit Learn para elucidação do <code>GridSearchCV</code>.</p>
+<div class="highlight"><pre style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-py" data-lang="py"><span style="color:#999;font-style:italic"># Importação do dataset usado como exemplo</span>
+<span style="color:#6ab825;font-weight:bold">from</span> <span style="color:#447fcf;text-decoration:underline">sklearn</span> <span style="color:#6ab825;font-weight:bold">import</span> datasets
+
+<span style="color:#999;font-style:italic"># Dados de Câncer de mama.</span>
+cancer = datasets.load_breast_cancer()
+
+<span style="color:#999;font-style:italic"># Criação do dataset features e vetor labels.</span>
+features = cancer.data
+labels = cancer.target</code></pre></div>
+<h4 id="classifier"><em>Classifier</em></h4>
+
+<p>Adota-se como algoritmo para ajustar os parâmetros o <code>AdaBoost</code>.</p>
+<div class="highlight"><pre style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-py" data-lang="py"><span style="color:#999;font-style:italic"># Importação do AdaBoost.</span>
+<span style="color:#6ab825;font-weight:bold">from</span> <span style="color:#447fcf;text-decoration:underline">sklearn.ensemble</span> <span style="color:#6ab825;font-weight:bold">import</span> AdaBoostClassifier
+
+<span style="color:#999;font-style:italic"># Uso do constructor do AdaBoost para criar um classifier.</span>
+clf = AdaBoostClassifier() <span style="color:#999;font-style:italic"># Sem nada dentro, pois vamos &#34;variar&#34; os parâmetros.</span></code></pre></div>
 <h4 id="criação-de-combinações-de-parâmetros">Criação de Combinações de Parâmetros</h4>
 
-<p>Com base numa lista de parâmetros o GridSearchCV criará as combinações e depois as avaliará, por exemplo, quero testar alguns valores de parâmetros de um AdaBoost.</p>
+<p>Com base numa &ldquo;lista&rdquo;&rdquo; de parâmetros o <code>GridSearchCV</code> criará as combinações e depois as avaliará, por exemplo, quero testar alguns valores de parâmetros de um <code>AdaBoost</code>. Os valores desta &ldquo;lista&rdquo; foram arbitrariamente escolhidos e sem nenhum critério técnico, o objetivo é encontrar valores otimizados.</p>
 <div class="highlight"><pre style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-py" data-lang="py"><span style="color:#999;font-style:italic"># Exemplo dos parâmetros que quero testar.</span>
 parametros = {<span style="color:#ed9d13">&#39;n_estimators&#39;</span>:[<span style="color:#3677a9">1</span>, <span style="color:#3677a9">5</span>, <span style="color:#3677a9">10</span>],
               <span style="color:#ed9d13">&#39;learning_rate&#39;</span>:[<span style="color:#3677a9">0.1</span>, <span style="color:#3677a9">1</span>, <span style="color:#3677a9">2</span>]}</code></pre></div>
@@ -151,9 +177,89 @@ combinacao_6 = [<span style="color:#3677a9">5</span>, <span style="color:#3677a9
 combinacao_7 = [<span style="color:#3677a9">10</span>, <span style="color:#3677a9">0.1</span>]
 combinacao_8 = [<span style="color:#3677a9">10</span>, <span style="color:#3677a9">1</span>]
 combinacao_9 = [<span style="color:#3677a9">10</span>, <span style="color:#3677a9">2</span>]</code></pre></div>
-<p>Portanto, sabe-se que o resultado do <code>GridSearchCV</code> deverá ter essas 9 simulações e a maneira de acessar essas informações é a partir do atributo <code>.cv_results_</code>.</p>
-<div class="highlight"><pre style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-py" data-lang="py"></code></pre></div>
-<h4 id="avaliação">Avaliação</h4>
+<p>Portanto, sabe-se que o resultado do <code>GridSearchCV</code> deverá ter 9 linhas e a maneira de acessar essas informações é a partir do atributo <code>.cv_results_</code>.</p>
+
+<p>Um exemplo de uso do GridsearchCV é exposto abaixo.</p>
+<div class="highlight"><pre style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-py" data-lang="py"><span style="color:#999;font-style:italic"># Criação do objeto do GridSearchCV.</span>
+grid = GridSearchCV(estimator = clf,          <span style="color:#999;font-style:italic"># É o nosso AdaBoost.</span>
+                    param_grid = parametros,  <span style="color:#999;font-style:italic"># É aquele dicionário com valores para serem testados.</span>
+                    scoring = <span style="color:#ed9d13">&#39;f1&#39;</span>,           <span style="color:#999;font-style:italic"># Arbitrariamente escolhi o f1, adiante explico com detalhes.</span>
+                    cv = <span style="color:#3677a9">20</span>)                  <span style="color:#999;font-style:italic"># Idem, arbitratiamente escolhi 20 e adiante será explanado.</span></code></pre></div>
+<p>Após a criação do objeto do <code>GridSearchCV</code>, pode-se treinar e imprimir os resultados.</p>
+<div class="highlight"><pre style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-py" data-lang="py"><span style="color:#999;font-style:italic"># Treinando o grid.</span>
+grid.fit(features, labels)
+
+<span style="color:#999;font-style:italic"># Imprimindo os resultados.</span>
+pd.DataFrame(grid.cv_results_)</code></pre></div>
+<p><center>
+<img src="/notebooks/images/blog/2019-03-21-como-usar-o-gridsearchcv/figura_01_cv_results.png" alt="Figura 1 - Anaconda Navigator." width="100%" height="100%"/>
+</center></p>
+
+<p>Há muitas colunas nesse resultado, então vamos fazer um <em>subset</em> escolhendo as colunas de interesse.</p>
+<div class="highlight"><pre style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-py" data-lang="py"><span style="color:#999;font-style:italic"># Imprime colunas de interesse.</span>
+pd.DataFrame(grid.cv_results_)[[<span style="color:#ed9d13">&#39;params&#39;</span>,<span style="color:#ed9d13">&#39;rank_test_score&#39;</span>,<span style="color:#ed9d13">&#39;mean_test_score&#39;</span>]]</code></pre></div>
+<p><center>
+<img src="/notebooks/images/blog/2019-03-21-como-usar-o-gridsearchcv/figura_02_cv_results_2.png" alt="Figura 1 - Anaconda Navigator." width="70%" height="70%"/>
+</center></p>
+
+<p>Conforme a tabela acima, o melhor resultado de <code>f1</code> é produzido pelos parâmetros <code>{'learning_rate': 1, 'n_estimators': 10}</code>. O atributo <code>.best_params_</code> pode ser usado também para obter os melhores parâmetros.</p>
+<div class="highlight"><pre style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-py" data-lang="py"><span style="color:#999;font-style:italic"># Imprime os parâmetros que produziram o &#34;.best_score_&#34;.</span>
+grid.best_params_</code></pre></div>
+<p>Bem como é possível imprimir o valor de <code>f1</code> usando o atributo <code>.best_score_</code>.</p>
+<div class="highlight"><pre style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-py" data-lang="py"><span style="color:#999;font-style:italic"># Imprimindo o score.</span>
+grid.best_score_</code></pre></div>
+<p>Que no caso será <samp>0.9622818059600856</samp></p>
+
+<h4 id="cross-validation"><em>Cross Validation</em></h4>
+
+<p>Uma pequena revisão.</p>
+
+<div class="alert alert-warning" role="alert">
+O que é <em>Cross Validation</em>?
+<blockquote>É o uso de um dataset independente para avaliar o grau e a capacidade de generalização do seu modelo.</blockquote>
+</div>
+
+<p>Note que o objeto <code>grid</code> foi definido com <code>cv = 20</code> e quando <code>cv</code> é um número inteiro o <code>GridSearchCV</code> executa um <a href="https://scikit-learn.org/stable/modules/generated/sklearn.model_selection.StratifiedKFold.html#sklearn.model_selection.StratifiedKFold"><code>StratifiedKFolds</code></a>, isso quer dizer que o <em>dataset</em> foi divido em 20 partes (ou <em>folds</em>) e cada parte foi usada como <em>test</em> em uma simulação.</p>
+<div class="highlight"><pre style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-py" data-lang="py"><span style="color:#999;font-style:italic"># Exemplo para o uso do StratifiedKFolds com 5 folds.</span>
+grid_2 = GridSearchCV(estimator = clf,
+                      param_grid = parametros,
+                      cv = <span style="color:#3677a9">5</span>,
+                      scoring = <span style="color:#ed9d13">&#39;f1&#39;</span>)
+
+<span style="color:#999;font-style:italic"># Imprime o f1</span>
+grid_2.fit(features,labels).best_score_</code></pre></div>
+<p>O <code>cv</code> também aceita a atribuição de um objeto do <a href="https://scikit-learn.org/stable/modules/generated/sklearn.model_selection.StratifiedShuffleSplit.html"><code>StratifiedShuffleSplit</code></a>, neste caso é necessário a definição da quantidade de <code>n_splits</code> e o tamanho do <em>dataset</em> de testes.</p>
+<div class="highlight"><pre style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-py" data-lang="py"><span style="color:#999;font-style:italic"># Exemplo para o uso do StratifiedShuffleSplit.</span>
+
+<span style="color:#999;font-style:italic"># Importação do módulo do StratifiedShuffleSplit.</span>
+<span style="color:#6ab825;font-weight:bold">from</span> <span style="color:#447fcf;text-decoration:underline">sklearn.model_selection</span> <span style="color:#6ab825;font-weight:bold">import</span> StratifiedShuffleSplit
+
+<span style="color:#999;font-style:italic"># Usando o constructor para criar o objeto sss</span>
+sss = StratifiedShuffleSplit(n_splits = <span style="color:#3677a9">20</span>,       <span style="color:#999;font-style:italic"># 20 simulações.</span>
+                             test_size = <span style="color:#3677a9">0.2</span>,     <span style="color:#999;font-style:italic"># 20% do dataset será de testes.</span>
+                             random_state = <span style="color:#3677a9">42</span>)   <span style="color:#999;font-style:italic"># Permitir a reprodutibilidade.</span>
+
+<span style="color:#999;font-style:italic"># Criando um objeto do GridSearchCV</span>
+grid_3 = GridSearchCV(estimator = clf,
+                      param_grid = parametros,
+                      cv = sss,
+                      scoring = <span style="color:#ed9d13">&#39;f1&#39;</span>)
+
+<span style="color:#999;font-style:italic"># Imprime o f1</span>
+grid_3.fit(features,labels).best_score_</code></pre></div>
+<p>Por fim, há a opção de não usar o <code>cv</code> do <code>GridSearchCV</code>, isto seria feito omitindo-o.</p>
+<div class="highlight"><pre style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-py" data-lang="py"><span style="color:#999;font-style:italic"># Exemplo do GridSearchCV sem cv. Demanda um cv manual.</span>
+
+<span style="color:#999;font-style:italic"># Criando um objeto do GridSearchCV sem cv.</span>
+grid_4 = GridSearchCV(estimator = clf,
+                      param_grid = parametros,
+                      scoring = <span style="color:#ed9d13">&#39;f1&#39;</span>)
+
+<span style="color:#999;font-style:italic"># Imprime o f1</span>
+grid_4.fit(features,labels).best_score_</code></pre></div>
+<p>Note que nessas alternativas de <em>cross validation</em> o objetivo é usar métricas para escolha do modelo que não sejam superestimadas, evitando assim o problema de <em>overfitting</em>.</p>
+
+<h4 id="scoring"><em>Scoring</em></h4>
 
                     
                         
