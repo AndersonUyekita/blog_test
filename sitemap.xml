@@ -87,13 +87,13 @@
   </url>
   
   <url>
-    <loc>/notebooks/categories/blogdown/</loc>
+    <loc>/notebooks/tags/blogdown/</loc>
     <lastmod>2019-03-21T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>/notebooks/tags/blogdown/</loc>
+    <loc>/notebooks/categories/blogdown/</loc>
     <lastmod>2019-03-21T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>

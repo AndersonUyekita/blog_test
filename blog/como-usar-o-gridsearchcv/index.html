@@ -104,11 +104,13 @@
                     <li class="list-inline-item"><a href="/author/ah-uyekita">AH Uyekita</a></li>
                     <li class="list-inline-item">Thursday, Mar 21, 2019</li>
                 </ul>
-                
+                <img class="img-fluid mb-50" src="/notebooks/images/blog/2019-03-21-como-usar-o-gridsearchcv/cover.png" alt="blog-image">
             </div>
             <div class="col-lg-8 offset-lg-2">
                 <div class="post-single-content">
                     
+
+<p><a href="https://mybinder.org/v2/gh/AndersonUyekita/notebooks/master?filepath=blog/2019-03-21-como-usar-o-gridsearchcv.pt.ipynb" target="_blank"><img src="https://mybinder.org/badge_logo.svg" alt = "binder badge"/></a></p>
 
 <p>O <code>GridSearchCV</code> é uma ferramenta usada para automatizar o processo de ajuste dos parâmetros de um algoritmo, pois ele fará de maneira sistemática diversas combinações dos parâmetros e depois de avaliá-los os armazenará num único objeto.</p>
 
@@ -117,7 +119,7 @@
 <div class="alert alert-dark" role="alert">
   <h4><strong><p class="text-secondary">Resumo</p></strong></h4>
   <ul>
-    <li>Exemplo disponibilizado em <a href="https://mybinder.org/v2/gh/AndersonUyekita/notebooks/master?filepath=blog/2019-03-21-como-usar-o-gridsearchcv.pt.ipynb" target="_blank">Jupyter Notebook</a>;</li>
+    <li>Exemplo disponibilizado em <a href="https://mybinder.org/v2/gh/AndersonUyekita/notebooks/master?filepath=blog/2019-03-21-como-usar-o-gridsearchcv.pt.ipynb" target="_blank">Jupyter Notebook</a> através da plataforma binder;</li>
     <li>Aplicação do <code>GridSearchCV</code> para o <em>tuning</em> dos parâmetros;</li>
     <li>Apresentação e configuração dos parâmetros <code>scoring</code>, <code>cv</code> e <code>refit</code>.</li>
   </ul>
@@ -260,6 +262,15 @@ grid_4.fit(features,labels).best_score_</code></pre></div>
 <p>Note que nessas alternativas de <em>cross validation</em> o objetivo é usar métricas para escolha do modelo que não sejam superestimadas, evitando assim o problema de <em>overfitting</em>.</p>
 
 <h4 id="scoring"><em>Scoring</em></h4>
+
+<p><br></p>
+
+<hr />
+
+<div class="alert alert-info" role="alert">
+  <h4><strong><p class="text-info">Conclusões</p></strong></h4>
+  <p></p>
+</div>
 
                     
                         
