@@ -2,120 +2,120 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Tags on AH Uyekita</title>
-    <link>/notebooks/tags/</link>
+    <link>https://andersonuyekita.github.io/notebooks/tags/</link>
     <description>Recent content in Tags on AH Uyekita</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Wed, 20 Mar 2019 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="/notebooks/tags/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://andersonuyekita.github.io/notebooks/tags/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Anaconda</title>
-      <link>/notebooks/tags/anaconda/</link>
+      <link>https://andersonuyekita.github.io/notebooks/tags/anaconda/</link>
       <pubDate>Wed, 20 Mar 2019 00:00:00 +0000</pubDate>
       
-      <guid>/notebooks/tags/anaconda/</guid>
+      <guid>https://andersonuyekita.github.io/notebooks/tags/anaconda/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Blogdown</title>
-      <link>/notebooks/tags/blogdown/</link>
+      <link>https://andersonuyekita.github.io/notebooks/tags/blogdown/</link>
       <pubDate>Thu, 21 Mar 2019 00:00:00 +0000</pubDate>
       
-      <guid>/notebooks/tags/blogdown/</guid>
+      <guid>https://andersonuyekita.github.io/notebooks/tags/blogdown/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Golang</title>
-      <link>/notebooks/tags/golang/</link>
+      <link>https://andersonuyekita.github.io/notebooks/tags/golang/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>/notebooks/tags/golang/</guid>
+      <guid>https://andersonuyekita.github.io/notebooks/tags/golang/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Hugo</title>
-      <link>/notebooks/tags/hugo/</link>
+      <link>https://andersonuyekita.github.io/notebooks/tags/hugo/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>/notebooks/tags/hugo/</guid>
+      <guid>https://andersonuyekita.github.io/notebooks/tags/hugo/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Plot</title>
-      <link>/notebooks/tags/plot/</link>
+      <link>https://andersonuyekita.github.io/notebooks/tags/plot/</link>
       <pubDate>Thu, 23 Jul 2015 21:13:14 -0500</pubDate>
       
-      <guid>/notebooks/tags/plot/</guid>
+      <guid>https://andersonuyekita.github.io/notebooks/tags/plot/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Programming</title>
-      <link>/notebooks/tags/programming/</link>
+      <link>https://andersonuyekita.github.io/notebooks/tags/programming/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>/notebooks/tags/programming/</guid>
+      <guid>https://andersonuyekita.github.io/notebooks/tags/programming/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Python</title>
-      <link>/notebooks/tags/python/</link>
-      <pubDate>Thu, 21 Mar 2019 00:00:00 +0000</pubDate>
+      <link>https://andersonuyekita.github.io/notebooks/tags/python/</link>
+      <pubDate>Wed, 20 Mar 2019 00:00:00 +0000</pubDate>
       
-      <guid>/notebooks/tags/python/</guid>
+      <guid>https://andersonuyekita.github.io/notebooks/tags/python/</guid>
       <description></description>
     </item>
     
     <item>
       <title>R Markdown</title>
-      <link>/notebooks/tags/r-markdown/</link>
+      <link>https://andersonuyekita.github.io/notebooks/tags/r-markdown/</link>
       <pubDate>Thu, 23 Jul 2015 21:13:14 -0500</pubDate>
       
-      <guid>/notebooks/tags/r-markdown/</guid>
+      <guid>https://andersonuyekita.github.io/notebooks/tags/r-markdown/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Regression</title>
-      <link>/notebooks/tags/regression/</link>
+      <link>https://andersonuyekita.github.io/notebooks/tags/regression/</link>
       <pubDate>Thu, 23 Jul 2015 21:13:14 -0500</pubDate>
       
-      <guid>/notebooks/tags/regression/</guid>
+      <guid>https://andersonuyekita.github.io/notebooks/tags/regression/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Scikit Learn</title>
-      <link>/notebooks/tags/scikit-learn/</link>
+      <link>https://andersonuyekita.github.io/notebooks/tags/scikit-learn/</link>
       <pubDate>Wed, 20 Mar 2019 00:00:00 +0000</pubDate>
       
-      <guid>/notebooks/tags/scikit-learn/</guid>
+      <guid>https://andersonuyekita.github.io/notebooks/tags/scikit-learn/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Theme</title>
-      <link>/notebooks/tags/theme/</link>
+      <link>https://andersonuyekita.github.io/notebooks/tags/theme/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>/notebooks/tags/theme/</guid>
+      <guid>https://andersonuyekita.github.io/notebooks/tags/theme/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Udacity</title>
-      <link>/notebooks/tags/udacity/</link>
-      <pubDate>Thu, 21 Mar 2019 00:00:00 +0000</pubDate>
+      <link>https://andersonuyekita.github.io/notebooks/tags/udacity/</link>
+      <pubDate>Wed, 20 Mar 2019 00:00:00 +0000</pubDate>
       
-      <guid>/notebooks/tags/udacity/</guid>
+      <guid>https://andersonuyekita.github.io/notebooks/tags/udacity/</guid>
       <description></description>
     </item>
     

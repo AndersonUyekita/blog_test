@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html class="no-js" lang="en-us" scroll-behavior="smooth"><head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <meta name="description" content="O GridSearchCV é uma ferramenta para automatizar o processo de ajuste dos parâmetros de um algoritmo, ele fará diversas combinações">
+    <meta name="description" content="O GridSearchCV é uma ferramenta usada para automatizar o processo de ajuste dos parâmetros de um algoritmo, pois ele fará de maneira sistemática diversas combinações dos parâmetros e os armazenará num único objeto.">
     <meta name="author" content="AH Uyekita">
 
     <!-- Mobile Specific Meta -->
@@ -30,6 +30,32 @@
     
     <link rel="stylesheet" href="/notebooks/css/style.min.css" integrity="" media="screen">
 
+    
+    
+    <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML"></script>
+    
+    <script type="text/x-mathjax-config">
+        MathJax.Hub.Config({
+            tex2jax: {
+                inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+                displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+                processEscapes: true,
+                processEnvironments: true
+            },
+            // Center justify equations in code and markdown cells. Elsewhere
+            // we use CSS to left justify single line equations in code cells.
+            displayAlign: 'center',
+            "HTML-CSS": {
+                styles: {'.MathJax_Display': {"margin": 0}},
+                linebreaks: { automatic: true }
+            }
+        });
+    </script>
+    
+
+
+
+
 </head>
 <body id="body" data-spy="scroll" data-target=".navbar" data-offset="52">
         <div id="content">
@@ -40,7 +66,7 @@
 
                 <!-- logo -->
                 <a class="navbar-brand logo" href="/notebooks/">
-                        <img src="/notebooks/images/logo.png" alt="Logo" />
+                        <img src="/notebooks/images/logo.svg" alt="Logo" />
                         <span class="pl-2 font-weight-bold">AH Uyekita</span>
                 </a>
                 <!-- /logo -->
@@ -82,7 +108,52 @@
             </div>
             <div class="col-lg-8 offset-lg-2">
                 <div class="post-single-content">
-                    <p>O GridSearchCV é uma ferramenta para automatizar o processo de ajuste dos parâmetros de um algoritmo, ele fará diversas combinações</p>
+                    
+
+<p>O <code>GridSearchCV</code> é uma ferramenta usada para automatizar o processo de ajuste dos parâmetros de um algoritmo, pois ele fará de maneira sistemática diversas combinações dos parâmetros e os armazenará num único objeto.</p>
+
+<div class="alert alert-dark" role="alert">
+  <h4><strong><p class="text-secondary">Resumo</p></strong></h4>
+  <ul>
+    <li></li>
+    <li></li>
+    <li></li>
+  </ul>
+</div>
+
+<p><br></p>
+
+<hr />
+
+<h2 id="gridsearchcv">GridSearchCV</h2>
+
+<p>O <code>GridSearchCV</code> é um módulo do <samp>Scikit Learn</samp> (Leia mais sobre ele <a href="https://scikit-learn.org/stable/modules/generated/sklearn.model_selection.GridSearchCV.html">aqui</a>) e é amplamente usado para automatizar grande parte do processo de <em>tuning</em>. O objetivo primário do <code>GridSearchCV</code> será a criação de combinações e posteriormente avaliá-las.</p>
+
+<h4 id="criação-de-combinações-de-parâmetros">Criação de Combinações de Parâmetros</h4>
+
+<p>Com base numa lista de parâmetros o GridSearchCV criará as combinações e depois as avaliará, por exemplo, quero testar alguns valores de parâmetros de um AdaBoost.</p>
+<div class="highlight"><pre style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-py" data-lang="py"><span style="color:#999;font-style:italic"># Exemplo dos parâmetros que quero testar.</span>
+parametros = {<span style="color:#ed9d13">&#39;n_estimators&#39;</span>:[<span style="color:#3677a9">1</span>, <span style="color:#3677a9">5</span>, <span style="color:#3677a9">10</span>],
+              <span style="color:#ed9d13">&#39;learning_rate&#39;</span>:[<span style="color:#3677a9">0.1</span>, <span style="color:#3677a9">1</span>, <span style="color:#3677a9">2</span>]}</code></pre></div>
+<p>Note que foram dados 3 valores para <code>n_estimators</code> e 3 valores para <code>learning_rate</code>, logo haverá 9 combinações possíveis.</p>
+
+<p>$$Combinacoes = 3 \cdot 3 = 9 \tag{1}$$</p>
+
+<p>Possíveis combinações:</p>
+<div class="highlight"><pre style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-py" data-lang="py"><span style="color:#999;font-style:italic"># Todas as combinações possíveis.</span>
+<span style="color:#999;font-style:italic"># combinacao_n = [n_estimators, learning_rate]</span>
+combinacao_1 = [<span style="color:#3677a9">1</span>, <span style="color:#3677a9">0.1</span>]
+combinacao_2 = [<span style="color:#3677a9">1</span>, <span style="color:#3677a9">1</span>]
+combinacao_3 = [<span style="color:#3677a9">1</span>, <span style="color:#3677a9">2</span>]
+combinacao_4 = [<span style="color:#3677a9">5</span>, <span style="color:#3677a9">0.1</span>]
+combinacao_5 = [<span style="color:#3677a9">5</span>, <span style="color:#3677a9">1</span>]
+combinacao_6 = [<span style="color:#3677a9">5</span>, <span style="color:#3677a9">2</span>]
+combinacao_7 = [<span style="color:#3677a9">10</span>, <span style="color:#3677a9">0.1</span>]
+combinacao_8 = [<span style="color:#3677a9">10</span>, <span style="color:#3677a9">1</span>]
+combinacao_9 = [<span style="color:#3677a9">10</span>, <span style="color:#3677a9">2</span>]</code></pre></div>
+<p>Portanto, sabe-se que o resultado do <code>GridSearchCV</code> deverá ter essas 9 simulações e a maneira de acessar essas informações é a partir do atributo <code>.cv_results_</code>.</p>
+<div class="highlight"><pre style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-py" data-lang="py"></code></pre></div>
+<h4 id="avaliação">Avaliação</h4>
 
                     
                         
@@ -186,7 +257,7 @@
 				<!-- copyright -->
 				<div class="copyright text-center">
 					<a href="/notebooks/">
-						<img src="/notebooks/images/logo.png" alt="Meghna" />
+						<img src="/notebooks/images/logo.svg" alt="Meghna" />
 					</a>
 					<br>
 
