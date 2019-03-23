@@ -6,10 +6,19 @@
     <description>Recent content in Udacity on AH Uyekita</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 21 Mar 2019 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Fri, 22 Mar 2019 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/notebooks/tags/udacity/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Como usar o Pipeline</title>
+      <link>/notebooks/blog/como-usar-o-pipeline/</link>
+      <pubDate>Fri, 22 Mar 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/notebooks/blog/como-usar-o-pipeline/</guid>
+      <description>O Pipeline assim como o GridSearchCV são módulos para automatizar processos repetitivos que muitas vezes permeia o processo de tuning de Machine Learning; Este post abordará exclusivamente como implementar o uso do Pipeline e quando ele deve ser usado.</description>
+    </item>
     
     <item>
       <title>Como usar o GridSearchCV</title>
