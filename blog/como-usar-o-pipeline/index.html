@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html class="no-js" lang="en-us" scroll-behavior="smooth"><head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <meta name="description" content="O Pipeline assim como o GridSearchCV são módulos para automatizar processos repetitivos que muitas vezes permeia o processo de tuning de Machine Learning; Este post abordará exclusivamente como implementar o uso do Pipeline e quando ele deve ser usado.">
+    <meta name="description" content="O Pipeline assim como o GridSearchCV são módulos para automatizar processos repetitivos que muitas vezes permeia o processo de tuning de Machine Learning; Este post abordará exclusivamente como implementar o uso do Pipeline e quando ele deve ser usado ou evitado.">
     <meta name="author" content="AH Uyekita">
 
     <!-- Mobile Specific Meta -->
@@ -110,15 +110,16 @@
                 <div class="post-single-content">
                     
 
-<p><a href="#" target="_blank"><img src="https://mybinder.org/badge_logo.svg" alt = "binder badge"/></a></p>
+<p><a href="https://mybinder.org/v2/gh/AndersonUyekita/notebooks/master?filepath=blog/2019-03-22-como-usar-o-pipeline.pt.ipynb" target="_blank"><img src="https://mybinder.org/badge_logo.svg" alt = "binder badge"/></a></p>
 
-<p>O <code>Pipeline</code> assim como o <code>GridSearchCV</code> são módulos para automatizar processos repetitivos que muitas vezes permeia o processo de <em>tuning</em> de <em>Machine Learning</em>; Este post abordará exclusivamente como implementar o uso do <code>Pipeline</code> e quando ele deve ser usado.</p>
+<p>O <code>Pipeline</code> assim como o <code>GridSearchCV</code> são módulos para automatizar processos repetitivos que muitas vezes permeia o processo de <em>tuning</em> de <em>Machine Learning</em>; Este post abordará exclusivamente como implementar o uso do <code>Pipeline</code> e quando ele deve ser usado ou evitado.</p>
 
 <div class="alert alert-dark" role="alert">
   <h4><strong><p class="text-secondary">Resumo</p></strong></h4>
   <ul>
-    <li></li>
-    <li></li>
+    <li>Usado para automatizar parte do processo de <em>tuning</em> de um modelo;</li>
+    <li>Pode ser usado erroneamente caso a etapa definida no <code>Pipeline</code> seja a mesma sempre (sem alteração de parâmetro);</li>
+    <li>Foi disponibilizado via Binder um Jupyter Notebook de acompanhamento, nele há detalhes que foram omitidos neste <em>post</em>.</li>
   </ul>
 </div>
 
@@ -128,11 +129,25 @@
 
 <h2 id="pipeline"><em>Pipeline</em></h2>
 
-<p>O <code>Pipeline</code> é um módulo do Scikit Learn (leia a documentação dele <a href="https://scikit-learn.org/stable/modules/generated/sklearn.pipeline.Pipeline.html">aqui</a>) que é usado para automatizar <kbd>etapas sequenciais</kbd>. Note que o <code>Pipeline</code> sempre execurá as etapas na <kbd>mesma ordem</kbd>, além disso executará <kbd>todas</kbd> elas exceção.</p>
+<p>O <code>Pipeline</code> é um módulo do Scikit Learn (leia a documentação dele <a href="https://scikit-learn.org/stable/modules/generated/sklearn.pipeline.Pipeline.html">aqui</a>) que é usado para automatizar <kbd>etapas sequenciais</kbd>. Note que o <code>Pipeline</code> sempre executará as etapas na <kbd>mesma ordem</kbd> e as executará <kbd>sem exceção</kbd>. Além disso, o <code>Pipeline</code> foi concebido para ser executado diversas vezes, pois o objetivo primário dele  é testar/avaliar parâmetros e <em>classifiers</em>.</p>
 
-<p>Portanto, ao definir um <code>Pipeline</code> tenha em mente a utilidade de cada etapa definida nela e se isso realmente faz sentido estar dentro do <code>Pipeline</code>.</p>
+<p>Portanto, ao definir um <code>Pipeline</code> tenha em mente a utilidade de cada etapa definida nela e se isso realmente faz sentido estar dentro do <code>Pipeline</code>. Caso você tenha que repetir a mesma etapa para todas as simulações sem ter que ajustar nenhum parâmetro, pode ser um indicativo que essa etapa pode ser alocada antes do <code>Pipeline</code> com o é o caso da mudança de escala.</p>
+
+<p>A Figura 1 apresenta uma ilustração de diagramas de blocos do <code>Pipeline</code>, note que o <code>Scaler</code> será executado todas as vezes que o <code>Pipeline</code> também o for, logo se o Scaler não tiver nenhum parâmetro para ser ajustado ou testado, ele pode ser executado antes do <code>Pipeline</code>, conforme a Figura 2.</p>
+
+<p><center>
+<img src="/notebooks/images/blog/2019-03-22-como-usar-o-pipeline/figura_01_workflow_1.svg" alt="Figura 1 - Anaconda Navigator." width="100%" height="100%"/></p>
+
+<p><em>Figura 1 - Diagrama de Blocos do Pipeline com <em>Scaler</em>.</em></center></p>
+
+<p><center>
+<img src="/notebooks/images/blog/2019-03-22-como-usar-o-pipeline/figura_01_workflow_2.svg" alt="Figura 1 - Anaconda Navigator." width="100%" height="100%"/></p>
+
+<p><em>Figura 2 - Diagrama de Blocos do Pipeline sem <em>Scaler</em>.</em></center></p>
 
 <h4 id="jupyter-notebook">Jupyter Notebook</h4>
+
+<p>Foi feito um <a href="https://mybinder.org/v2/gh/AndersonUyekita/notebooks/master?filepath=blog/2019-03-22-como-usar-o-pipeline.pt.ipynb">Jupyter Notebook</a> (e disponibilizado pelo Binder) de acompanhamento do <em>post</em>, nele há diversos exemplos e alguns detalhes que foram omitidos neste <em>post</em>.</p>
 
 <h4 id="dataset"><em>Dataset</em></h4>
 
@@ -156,7 +171,170 @@ labels = cancer.target</code></pre></div>
 clf = LogisticRegression(random_state = <span style="color:#3677a9">42</span>,
                          solver = <span style="color:#ed9d13">&#39;lbfgs&#39;</span>,
                          multi_class = <span style="color:#ed9d13">&#39;multinomial&#39;</span>)</code></pre></div>
-<h4 id="definição-das-etapas">Definição das Etapas</h4>
+<h4 id="etapas-do-pipeline">Etapas do Pipeline</h4>
+
+<p>Inicialmente será exposto etapa por etapa e posteriormente será criado o <code>Pipeline</code> para comparar os benefícios de usá-lo. Desta maneira, este item abordará:</p>
+
+<ul>
+<li>Mudança de Escala (propositalmente deixado no <code>Pipeline</code>);</li>
+<li>Diminuição de Dimensão, e;</li>
+<li>Treino e Previsão.</li>
+</ul>
+
+<h5 id="mudança-de-escala">Mudança de Escala</h5>
+
+<p>A mudança de escala é feita usando o módulo do <a href="https://scikit-learn.org/stable/modules/generated/sklearn.preprocessing.MinMaxScaler.html"><code>MinMaxScaler</code></a> que também é parte do Scikit Learn.</p>
+<div class="highlight"><pre style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-py" data-lang="py"><span style="color:#999;font-style:italic"># Importação do MinMaxScaler.</span>
+<span style="color:#6ab825;font-weight:bold">from</span> <span style="color:#447fcf;text-decoration:underline">sklearn.preprocessing</span> <span style="color:#6ab825;font-weight:bold">import</span> MinMaxScaler
+
+<span style="color:#999;font-style:italic"># Constructor para criar o objeto do MinMaxScaler.</span>
+scaler = MinMaxScaler()
+
+<span style="color:#999;font-style:italic"># Treino.</span>
+scaler.fit(features)
+
+<span style="color:#999;font-style:italic"># Transformação.</span>
+features_scaled = scaler.transform(features)</code></pre></div>
+<h5 id="redução-de-variáveis">Redução de Variáveis</h5>
+
+<p>A diminuição de <em>features</em> é feita usando a Análise de Componentes Principais (<a href="https://scikit-learn.org/stable/modules/generated/sklearn.decomposition.PCA.html"><code>PCA</code></a>), o Scikit Learn também possui um módulo dedicado para isso.</p>
+<div class="highlight"><pre style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-py" data-lang="py"><span style="color:#999;font-style:italic"># Importação do PCA.</span>
+<span style="color:#6ab825;font-weight:bold">from</span> <span style="color:#447fcf;text-decoration:underline">sklearn.decomposition</span> <span style="color:#6ab825;font-weight:bold">import</span> PCA
+
+<span style="color:#999;font-style:italic"># Uso do constructor para criar o objeto do PCA.</span>
+pca = PCA(n_components = <span style="color:#3677a9">10</span>)
+
+<span style="color:#999;font-style:italic"># Treino.</span>
+pca.fit(features_scaled)
+
+<span style="color:#999;font-style:italic"># Tranformação.</span>
+features_scaled_pca = pca.transform(features_scaled)</code></pre></div>
+<h5 id="treino-e-previsão">Treino e Previsão</h5>
+
+<p>Baseado no <em>classifer</em> <code>clf</code>, no <em>features dataset</em> e em <em>labels</em> será calculado a acurácia do <em>Logistic Regression</em>. Será utilizado o <a href="https://scikit-learn.org/stable/modules/generated/sklearn.model_selection.train_test_split.html"><code>train_test_split</code></a> para criar os <em>datasets</em> de treino e teste.</p>
+<div class="highlight"><pre style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-py" data-lang="py"><span style="color:#999;font-style:italic"># Importação do StratifiedShuffleSplit.</span>
+<span style="color:#6ab825;font-weight:bold">from</span> <span style="color:#447fcf;text-decoration:underline">sklearn.model_selection</span> <span style="color:#6ab825;font-weight:bold">import</span> train_test_split
+
+<span style="color:#999;font-style:italic"># Divisão dos features e labels em treino e teste.</span>
+features_train, features_test, labels_train, labels_test = train_test_split(features_scaled_pca,
+                                                                            labels,
+                                                                            test_size=<span style="color:#3677a9">0.33</span>,
+                                                                            random_state=<span style="color:#3677a9">42</span>)</code></pre></div>
+<p>Agora faremos o treino e a previsão.</p>
+<div class="highlight"><pre style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-py" data-lang="py"><span style="color:#999;font-style:italic"># Treino usando o dataset de treino.</span>
+clf.fit(features_train, labels_train)
+
+<span style="color:#999;font-style:italic"># Previsões usando o dataset de test.</span>
+pred = clf.predict(features_test)
+
+<span style="color:#999;font-style:italic"># Importação do módulo para cálculo do Accuracy.</span>
+<span style="color:#6ab825;font-weight:bold">from</span> <span style="color:#447fcf;text-decoration:underline">sklearn.metrics</span> <span style="color:#6ab825;font-weight:bold">import</span> accuracy_score
+
+<span style="color:#999;font-style:italic"># Avaliação.</span>
+accuracy_score(labels_test, pred)</code></pre></div>
+<pre><code>0.9787234042553191
+</code></pre>
+
+<p>Note que todas essas três etapas anteriores podem ser condensadas numa só ao criar um <code>Pipeline</code>. Os requisitos necessários para o <code>Pipeline</code> é a criação de uma lista de etapas, conforme essa apresentada abaixo.</p>
+<div class="highlight"><pre style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-py" data-lang="py"><span style="color:#999;font-style:italic"># Minha lista de etapas.</span>
+etapas_pipeline = [(<span style="color:#ed9d13">&#39;scaler&#39;</span>, scaler), <span style="color:#999;font-style:italic"># O scaler está definido na Etapa 5.1.1</span>
+                   (<span style="color:#ed9d13">&#39;pca&#39;</span>   , pca),    <span style="color:#999;font-style:italic"># O pca está definido na Etapa 5.1.2</span>
+                   (<span style="color:#ed9d13">&#39;clf&#39;</span>   , clf)]    <span style="color:#999;font-style:italic"># O clf está definido no item 4 e foi usado na Etapa 5.1.3</span></code></pre></div>
+<p>Note que estou usando os objetos criados nas etapas anteriores, mas eu posso usar o próprio <em>constructor</em>, logo atualizando a lista <code>etapas_pipeline</code>, tem-se:</p>
+<div class="highlight"><pre style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-py" data-lang="py"><span style="color:#999;font-style:italic"># Minha lista de etapas.</span>
+etapas_pipeline = [(<span style="color:#ed9d13">&#39;scaler&#39;</span>, MinMaxScaler()),                                     <span style="color:#999;font-style:italic"># Etapa 5.1.1</span>
+                   (<span style="color:#ed9d13">&#39;pca&#39;</span>   , PCA(n_components = <span style="color:#3677a9">10</span>)),                             <span style="color:#999;font-style:italic"># Etapa 5.1.2</span>
+                   (<span style="color:#ed9d13">&#39;clf&#39;</span>   , LogisticRegression(random_state = <span style="color:#3677a9">42</span>,                <span style="color:#999;font-style:italic"># Etapa 5.1.3</span>
+                                                 solver = <span style="color:#ed9d13">&#39;lbfgs&#39;</span>,
+                                                 multi_class = <span style="color:#ed9d13">&#39;multinomial&#39;</span>))]</code></pre></div>
+<p>Após a definição da lista de etapas, pode-se criar a partir do <em>constructor</em> do <code>Pipeline</code> o objeto <code>pipe</code>.</p>
+<div class="highlight"><pre style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-py" data-lang="py"><span style="color:#999;font-style:italic"># Importação do Pipeline</span>
+<span style="color:#6ab825;font-weight:bold">from</span> <span style="color:#447fcf;text-decoration:underline">sklearn.pipeline</span> <span style="color:#6ab825;font-weight:bold">import</span> Pipeline
+
+<span style="color:#999;font-style:italic"># Uso do constructor para criação do objeto do Pipeline.</span>
+pipe = Pipeline(etapas_pipeline)</code></pre></div>
+<p>Analogamente ao processo feito passo-a-passo, utilizarei o mesmo train_test_split para dividir <em>features</em> e <em>labels</em> em treino e teste.</p>
+<div class="highlight"><pre style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-py" data-lang="py"><span style="color:#999;font-style:italic"># Divisão dos features e labels em treino e teste.</span>
+features_train_2, features_test_2, labels_train_2, labels_test_2 = train_test_split(features,
+                                                                                    labels,
+                                                                                    test_size=<span style="color:#3677a9">0.33</span>,
+                                                                                    random_state=<span style="color:#3677a9">42</span>)</code></pre></div>
+<p>Por fim, consideramos o <code>pipe</code> como um objetivo parecido com um <em>classifier</em>, será treinado e depois utilizado para fazer previsões.</p>
+<div class="highlight"><pre style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-py" data-lang="py"><span style="color:#999;font-style:italic"># Treino do pipe.</span>
+pipe.fit(features_train_2, labels_train_2);
+
+<span style="color:#999;font-style:italic"># Fazendo previsões.</span>
+pred_2 = pipe.predict(features_test_2)
+
+<span style="color:#999;font-style:italic"># Calculando o accuracy.</span>
+accuracy_score(labels_test_2, pred_2)</code></pre></div>
+<pre><code>0.9787234042553191
+</code></pre>
+
+<p>Note que o <code>Pipeline</code> aplica <strong>ocultamente</strong> os processos <code>fit</code> e <code>transform</code> das primeiras duas etapas, deixando apenas a parte de <code>fit</code> e <code>predict</code> do <em>classifier</em>. Logo, é um <strong>requisito necessário</strong> para que o <code>Pipeline</code> funcione que as etapas que antecedem o <em>classifier</em> possuam esses dois métodos.</p>
+
+<div class="alert alert-warning" role="alert">
+  <p>Não há como ter dois <em>classifiers</em> como etapas do Pipeline, pois ele só admite um e deve ser a última etapa.</p>
+  <p>O motivo é simples: Os <em>classifiers</em> geralmente não possuem o método <code>transform</code>, o que é um requisito das etapas internas do <code>Pipeline</code>.</p>
+</div>
+
+<h4 id="múltiplos-classifiers">Múltiplos <em>Classifiers</em></h4>
+
+<p>A maneira de usar diversos <em>classifiers</em> no Pipeline é usando dois dicionários. O primeiro serve para armazenar os <em>classfiers</em> e o segundo os <em>tuples</em> requeridos pelo <code>Pipeline</code> funcionar.</p>
+
+<p>Dessa maneira, define-se o dicionário de <em>classifiers</em>:</p>
+<div class="highlight"><pre style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-py" data-lang="py"><span style="color:#999;font-style:italic"># Importação do Naïve Bayes.</span>
+<span style="color:#6ab825;font-weight:bold">from</span> <span style="color:#447fcf;text-decoration:underline">sklearn.naive_bayes</span> <span style="color:#6ab825;font-weight:bold">import</span> GaussianNB
+
+<span style="color:#999;font-style:italic"># Dicionário de classifiers.</span>
+meus_classifiers = {<span style="color:#ed9d13">&#39;logit&#39;</span>:(<span style="color:#ed9d13">&#39;lr&#39;</span>, LogisticRegression(random_state = <span style="color:#3677a9">42</span>,
+                                                      solver = <span style="color:#ed9d13">&#39;lbfgs&#39;</span>,
+                                                      multi_class = <span style="color:#ed9d13">&#39;multinomial&#39;</span>)),
+                    <span style="color:#ed9d13">&#39;bayes&#39;</span>:(<span style="color:#ed9d13">&#39;gnb&#39;</span>, GaussianNB())}</code></pre></div>
+<p>Observe que o dicionário <code>meus_classifiers</code> somente funcionará caso seja definido o <code>key</code>, caso contrário o <code>Pipeline</code> não conseguirá interpretá-lo.</p>
+
+<p>Agora, vamos inserir o dicionário <code>meus_classifiers</code> como um dos elementos de <code>etapas_pipeline</code>. A chave escolhida foi <code>logit</code>.</p>
+<div class="highlight"><pre style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-py" data-lang="py"><span style="color:#999;font-style:italic"># Minha lista de etapas com um dicionário aninhado.</span>
+etapas_pipeline_2 = [(<span style="color:#ed9d13">&#39;scaler&#39;</span>, MinMaxScaler()),
+                     (<span style="color:#ed9d13">&#39;pca&#39;</span>   , PCA(n_components = <span style="color:#3677a9">10</span>)),
+                      meus_classifiers[<span style="color:#ed9d13">&#39;logit&#39;</span>]]</code></pre></div>
+<p>Implicitamente, sabe-se que <code>meus_classifiers['logit']</code> tem o mesmo significado de:</p>
+<div class="highlight"><pre style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-py" data-lang="py">LogisticRegression(random_state = <span style="color:#3677a9">42</span>,
+                   solver = <span style="color:#ed9d13">&#39;lbfgs&#39;</span>,
+                   multi_class = <span style="color:#ed9d13">&#39;multinomial&#39;</span>)</code></pre></div>
+<p>Portanto, pode-se treinar e calcular as previsões.</p>
+<div class="highlight"><pre style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-py" data-lang="py"><span style="color:#999;font-style:italic"># Uso do constructor para criação do objeto do Pipeline.</span>
+pipe_2 = Pipeline(etapas_pipeline_2)
+
+<span style="color:#999;font-style:italic"># Treino do pipe.</span>
+pipe_2.fit(features_train_2, labels_train_2);
+
+<span style="color:#999;font-style:italic"># Fazendo previsões.</span>
+pred_4 = pipe.predict(features_test_2)
+
+<span style="color:#999;font-style:italic"># Calculando o accuracy.</span>
+accuracy_score(labels_test_2, pred_4)</code></pre></div>
+<pre><code>0.9840425531914894
+</code></pre>
+
+<p>Caso seja necessário a simulação para o <code>Naïve Bayes</code>, pode-se substituir a chave para <code>bayes</code> e executar novamente o treino e a previsão.</p>
+<div class="highlight"><pre style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-py" data-lang="py"><span style="color:#999;font-style:italic"># Uso do constructor para criação do objeto do Pipeline.</span>
+pipe_3 = Pipeline([(<span style="color:#ed9d13">&#39;scaler&#39;</span>, MinMaxScaler()),
+                   (<span style="color:#ed9d13">&#39;pca&#39;</span>   , PCA(n_components = <span style="color:#3677a9">10</span>)),
+                    meus_classifiers[<span style="color:#ed9d13">&#39;bayes&#39;</span>]])         <span style="color:#999;font-style:italic"># Estou usando o Naïve Bayes agora.</span>
+
+<span style="color:#999;font-style:italic"># Treino do pipe.</span>
+pipe_3.fit(features_train_2, labels_train_2);
+
+<span style="color:#999;font-style:italic"># Fazendo previsões.</span>
+pred_5 = pipe_3.predict(features_test_2)
+
+<span style="color:#999;font-style:italic"># Calculando o accuracy.</span>
+accuracy_score(labels_test_2, pred_5)</code></pre></div>
+<pre><code>0.9202127659574468
+</code></pre>
+
+<p>Note que o uso do <code>Pipeline</code> simplifica o processo de <em>tuning</em>, pois a aplicação de <code>fit</code> e <code>transform</code> são &ldquo;omitidos&rdquo; ao serem aplicados &ldquo;automaticamente&rdquo;.</p>
 
 <p><br></p>
 
@@ -164,7 +342,10 @@ clf = LogisticRegression(random_state = <span style="color:#3677a9">42</span>,
 
 <div class="alert alert-info" role="alert">
   <h4><strong><p class="text-info">Conclusões</p></strong></h4>
-  <p></p>
+  <p>O <code>Pipeline</code> pode automatizar grande parte do processo de calibragem do modelo e ser benéfico ao <em>workflow</em>, mas ele também pode ser usado de forma errada quando se adiciona etapas sem uma análise crítica. <strong>Um exemplo é o que foi feito nesse artigo</strong>, a etapa de mudança de escala das <em>features</em> foi feito sempre que o <code>Pipeline</code> foi executado.</p>
+  <p>Observe que convenientemente deve-se fazer a mudança de escala para otimizar o processo do <em>Gradient Descent</em> dos algoritmos que são baseados em distância, logo de forma geral é muito aconselhável fazer a mudança de escala para todos os algoritmos, pois não há nenhuma desvantagem em mudar a escala das <em>features</em>. Portanto, a remoção do <code>MinMaxScaler</code> da lista de etapas e executando ele antes do <code>Pipeline</code> resultará num algoritmo mais eficiente, pois ele será executado uma vez só.</p>
+  <p>Já para o caso do <code>PCA</code> é conveniente que se deixe dentro do <code>Pipeline</code>, pois dará a oportunidade de variarmos a quantidade de componentes principais (<code>n_components</code>).</p>
+  <p>Por fim, tenha em mente que para <em>datasets</em> pequenos o tempo de execução não é algo a se preocupar, mas em casos reais onde o tempo é um fator limitante, eliminar repetições desnecessárias é fundamental para otimizar os gastos dos seus recursos (tempo, dinheiro, esforço, paciência, etc.).</p>
 </div>
 
                     
