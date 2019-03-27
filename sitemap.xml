@@ -3,6 +3,11 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://andersonuyekita.github.io/notebooks/portfolio/teste-portfolio/</loc>
+    <lastmod>2019-03-26T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://andersonuyekita.github.io/notebooks/blog/usando-gridsearchcv-e-pipeline-conjuntamente/</loc>
     <lastmod>2019-03-23T00:00:00+00:00</lastmod>
   </url>
@@ -69,13 +74,13 @@
   
   <url>
     <loc>https://andersonuyekita.github.io/notebooks/</loc>
-    <lastmod>2019-03-23T00:00:00+00:00</lastmod>
+    <lastmod>2019-03-26T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://andersonuyekita.github.io/notebooks/author/ah-uyekita/</loc>
-    <lastmod>2019-03-23T00:00:00+00:00</lastmod>
+    <lastmod>2019-03-26T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -130,6 +135,18 @@
   </url>
   
   <url>
+    <loc>https://andersonuyekita.github.io/notebooks/categories/portfolio/</loc>
+    <lastmod>2019-03-26T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://andersonuyekita.github.io/notebooks/portfolio/</loc>
+    <lastmod>2019-03-26T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>https://andersonuyekita.github.io/notebooks/tags/programming/</loc>
     <priority>0</priority>
   </url>
@@ -169,7 +186,7 @@
   
   <url>
     <loc>https://andersonuyekita.github.io/notebooks/tags/udacity/</loc>
-    <lastmod>2019-03-23T00:00:00+00:00</lastmod>
+    <lastmod>2019-03-26T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
