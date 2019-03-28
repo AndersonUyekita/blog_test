@@ -40,15 +40,6 @@ Resumo</description>
     </item>
     
     <item>
-      <title>Estrutura do Blogdown</title>
-      <link>https://andersonuyekita.github.io/notebooks/blog/estrutura-do-blogdown/</link>
-      <pubDate>Thu, 21 Mar 2019 00:00:00 +0000</pubDate>
-      
-      <guid>https://andersonuyekita.github.io/notebooks/blog/estrutura-do-blogdown/</guid>
-      <description>Uma breve intrudoção de como funciona o Blogdown no que tange o gerenciamento de arquivos.</description>
-    </item>
-    
-    <item>
       <title>Atualizando cross_validation para model_selection</title>
       <link>https://andersonuyekita.github.io/notebooks/blog/migrando-cross-validation-para-model-selection/</link>
       <pubDate>Wed, 20 Mar 2019 00:00:00 +0000</pubDate>

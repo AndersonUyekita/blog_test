@@ -3,11 +3,6 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>https://andersonuyekita.github.io/notebooks/portfolio/teste-portfolio/</loc>
-    <lastmod>2019-03-26T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
     <loc>https://andersonuyekita.github.io/notebooks/blog/usando-gridsearchcv-e-pipeline-conjuntamente/</loc>
     <lastmod>2019-03-23T00:00:00+00:00</lastmod>
   </url>
@@ -19,11 +14,6 @@
   
   <url>
     <loc>https://andersonuyekita.github.io/notebooks/blog/como-usar-o-gridsearchcv/</loc>
-    <lastmod>2019-03-21T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://andersonuyekita.github.io/notebooks/blog/estrutura-do-blogdown/</loc>
     <lastmod>2019-03-21T00:00:00+00:00</lastmod>
   </url>
   
@@ -43,44 +33,26 @@
   </url>
   
   <url>
-    <loc>https://andersonuyekita.github.io/notebooks/blog/are-you-doing-the-right-way/</loc>
-    <lastmod>2018-09-12T14:51:12+06:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://andersonuyekita.github.io/notebooks/blog/simple-post-title/</loc>
-    <lastmod>2018-09-12T14:39:16+06:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://andersonuyekita.github.io/notebooks/blog/simple-image-post/</loc>
-    <lastmod>2018-09-12T12:52:36+06:00</lastmod>
-  </url>
-  
-  <url>
     <loc>https://andersonuyekita.github.io/notebooks/author/jamica-jock/</loc>
-    <lastmod>2018-09-12T12:52:36+06:00</lastmod>
   </url>
   
   <url>
     <loc>https://andersonuyekita.github.io/notebooks/author/john-doe/</loc>
-    <lastmod>2018-09-12T14:51:12+06:00</lastmod>
   </url>
   
   <url>
     <loc>https://andersonuyekita.github.io/notebooks/author/somrat/</loc>
-    <lastmod>2018-09-12T14:39:16+06:00</lastmod>
   </url>
   
   <url>
     <loc>https://andersonuyekita.github.io/notebooks/</loc>
-    <lastmod>2019-03-26T00:00:00+00:00</lastmod>
+    <lastmod>2019-03-23T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://andersonuyekita.github.io/notebooks/author/ah-uyekita/</loc>
-    <lastmod>2019-03-26T00:00:00+00:00</lastmod>
+    <lastmod>2019-03-23T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -92,7 +64,7 @@
   
   <url>
     <loc>https://andersonuyekita.github.io/notebooks/author/</loc>
-    <lastmod>2018-09-12T12:52:36+06:00</lastmod>
+    <lastmod>2019-03-23T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -104,7 +76,7 @@
   
   <url>
     <loc>https://andersonuyekita.github.io/notebooks/tags/blogdown/</loc>
-    <lastmod>2019-03-21T00:00:00+00:00</lastmod>
+    <lastmod>2019-03-20T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -121,37 +93,6 @@
   </url>
   
   <url>
-    <loc>https://andersonuyekita.github.io/notebooks/tags/golang/</loc>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://andersonuyekita.github.io/notebooks/blog/installation/</loc>
-  </url>
-  
-  <url>
-    <loc>https://andersonuyekita.github.io/notebooks/tags/hugo/</loc>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://andersonuyekita.github.io/notebooks/categories/portfolio/</loc>
-    <lastmod>2019-03-26T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://andersonuyekita.github.io/notebooks/portfolio/</loc>
-    <lastmod>2019-03-26T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://andersonuyekita.github.io/notebooks/tags/programming/</loc>
-    <priority>0</priority>
-  </url>
-  
-  <url>
     <loc>https://andersonuyekita.github.io/notebooks/tags/python/</loc>
     <lastmod>2019-03-23T00:00:00+00:00</lastmod>
     <priority>0</priority>
@@ -164,29 +105,14 @@
   </url>
   
   <url>
-    <loc>https://andersonuyekita.github.io/notebooks/categories/starting/</loc>
-    <priority>0</priority>
-  </url>
-  
-  <url>
     <loc>https://andersonuyekita.github.io/notebooks/tags/</loc>
     <lastmod>2019-03-20T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://andersonuyekita.github.io/notebooks/tags/theme/</loc>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://andersonuyekita.github.io/notebooks/author/themefisher/</loc>
-    <priority>0</priority>
-  </url>
-  
-  <url>
     <loc>https://andersonuyekita.github.io/notebooks/tags/udacity/</loc>
-    <lastmod>2019-03-26T00:00:00+00:00</lastmod>
+    <lastmod>2019-03-23T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   

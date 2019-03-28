@@ -20,23 +20,5 @@
       <description></description>
     </item>
     
-    <item>
-      <title>Portfolio</title>
-      <link>https://andersonuyekita.github.io/notebooks/categories/portfolio/</link>
-      <pubDate>Tue, 26 Mar 2019 00:00:00 +0000</pubDate>
-      
-      <guid>https://andersonuyekita.github.io/notebooks/categories/portfolio/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Starting</title>
-      <link>https://andersonuyekita.github.io/notebooks/categories/starting/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://andersonuyekita.github.io/notebooks/categories/starting/</guid>
-      <description></description>
-    </item>
-    
   </channel>
 </rss>
