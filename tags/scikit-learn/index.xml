@@ -13,10 +13,10 @@
     
     <item>
       <title>Atualizando cross_validation para model_selection</title>
-      <link>https://andersonuyekita.github.io/notebooks/blog/migrando-cross-validation-para-model-selection/</link>
+      <link>https://andersonuyekita.github.io/notebooks/blog/2019/03/20/migrando-cross-validation-para-model-selection/</link>
       <pubDate>Wed, 20 Mar 2019 00:00:00 +0000</pubDate>
       
-      <guid>https://andersonuyekita.github.io/notebooks/blog/migrando-cross-validation-para-model-selection/</guid>
+      <guid>https://andersonuyekita.github.io/notebooks/blog/2019/03/20/migrando-cross-validation-para-model-selection/</guid>
       <description>As versões recentes de Scikit Learn (0.23.0) não possuem mais o módulo cross_validation, desta maneira algumas aplicações de Python podem ter o seu funcionamento afetado.</description>
     </item>
     

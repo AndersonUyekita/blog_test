@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en-us" scroll-behavior="smooth"><head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="description" content="O Pipeline assim como o GridSearchCV são módulos para automatizar processos repetitivos que muitas vezes permeia o processo de tuning de Machine Learning; Este post abordará exclusivamente como implementar o uso do Pipeline e quando ele deve ser usado ou evitado.">
+    <meta name="author" content="AH Uyekita">
+
+    <!-- Mobile Specific Meta -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="generator" content="Hugo 0.50" />
+
+    <title>Como usar o Pipeline | Blogs</title>
+
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" type="image/x-icon" href="https://andersonuyekita.github.io/notebooks/images/favicon/favicon.ico"/>
+
+    <!-- CSS -->
+    <!-- Fontawesome Icon font -->
+    <link rel="stylesheet" href="https://andersonuyekita.github.io/notebooks/plugins/themefisher-font/style.css">
+    <!-- bootstrap.min css -->
+    <link rel="stylesheet" href="https://andersonuyekita.github.io/notebooks/plugins/bootstrap/dist/css/bootstrap.min.css">
+    <!-- Animate.css -->
+    <link rel="stylesheet" href="https://andersonuyekita.github.io/notebooks/plugins/animate-css/animate.css">
+    <!-- Magnific popup css -->
+    <link rel="stylesheet" href="https://andersonuyekita.github.io/notebooks/plugins/magnific-popup/dist/magnific-popup.css">
+    <!-- Slick Carousel -->
+    <link rel="stylesheet" href="https://andersonuyekita.github.io/notebooks/plugins/slick-carousel/slick/slick.css">
+    <link rel="stylesheet" href="https://andersonuyekita.github.io/notebooks/plugins/slick-carousel/slick/slick-theme.css">
+    <!-- Main Stylesheet -->
+    
+    <link rel="stylesheet" href="https://andersonuyekita.github.io/notebooks/css/style.min.css" integrity="" media="screen">
+
+    
+    
+    <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML"></script>
+    
+    <script type="text/x-mathjax-config">
+        MathJax.Hub.Config({
+            tex2jax: {
+                inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+                displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+                processEscapes: true,
+                processEnvironments: true
+            },
+            // Center justify equations in code and markdown cells. Elsewhere
+            // we use CSS to left justify single line equations in code cells.
+            displayAlign: 'center',
+            "HTML-CSS": {
+                styles: {'.MathJax_Display': {"margin": 0}},
+                linebreaks: { automatic: true }
+            }
+        });
+    </script>
+    
+
+
+
+
+</head>
+<body id="body" data-spy="scroll" data-target=".navbar" data-offset="52">
+        <div id="content">
+
+<!-- Fixed Navigation -->
+<nav id="navigation" class="navbar navbar-expand-lg navigation sticky-top">
+        <div class="container">
+
+                <!-- logo -->
+                <a class="navbar-brand logo" href="https://andersonuyekita.github.io/notebooks/">
+                        <img src="https://andersonuyekita.github.io/notebooks/images/logo.svg" alt="Logo" />
+                        <span class="pl-2 font-weight-bold">AH Uyekita</span>
+                </a>
+                <!-- /logo -->
+
+                <!-- responsive nav button -->
+                <button class="navbar-toggler navbar-dark" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                </button>
+                <!-- /responsive nav button -->
+
+                <!-- main nav -->
+                
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul class="navbar-nav ml-auto navigation-menu">
+                                <li class="nav-item"><a class="nav-link" data-scroll href="https://andersonuyekita.github.io/notebooks/#body">Home</a></li>
+                                
+                                <li class="nav-item"><a class="nav-link" data-scroll href="https://andersonuyekita.github.io/notebooks/#portfolio">Portfolio</a></li>
+                                
+                                <li class="nav-item"><a class="nav-link" data-scroll href="https://andersonuyekita.github.io/notebooks/#blog">Blog</a></li>
+                                
+                        </ul>
+                </div>
+                
+                <!-- /main nav -->
+        </div>
+
+</nav>
+<!-- End Fixed Navigation -->
+
+
+<section class="section">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 offset-lg-2 text-center">
+                <h1>Como usar o Pipeline</h1>
+                <ul class="list-inline mb-50">
+                    <li class="list-inline-item"><a href="/author/ah-uyekita">AH Uyekita</a></li>
+                    <li class="list-inline-item">Friday, Mar 22, 2019</li>
+                    <li class="list-inline-item">
+                         
+                             <p class="post-reading post-line">
+                                 <span>Estimated reading time: <strong> 7 min </strong> </span>
+                             </p>
+                         
+                    </li>
+                </ul>
+                <img class="img-fluid mb-50" src="https://andersonuyekita.github.io/notebooks/images/blog/2019-03-22-como-usar-o-pipeline/cover.png" alt="blog-image">
+            </div>
+            <div class="col-lg-8 offset-lg-2">
+                <div class="post-single-content">
+                    
+
+<p><a href="https://mybinder.org/v2/gh/AndersonUyekita/notebooks/master?filepath=blog/2019-03-22-como-usar-o-pipeline.pt.ipynb" target="_blank"><img src="https://mybinder.org/badge_logo.svg" alt = "binder badge"/></a></p>
+
+<p>O <code>Pipeline</code> assim como o <code>GridSearchCV</code> são módulos para automatizar processos repetitivos que muitas vezes permeia o processo de <em>tuning</em> de <em>Machine Learning</em>; Este post abordará exclusivamente como implementar o uso do <code>Pipeline</code> e quando ele deve ser usado ou evitado.</p>
+
+<div class="alert alert-dark" role="alert">
+  <h4><strong><p class="text-secondary">Resumo</p></strong></h4>
+  <ul>
+    <li>Usado para automatizar parte do processo de <em>tuning</em> de um modelo;</li>
+    <li>Pode ser usado erroneamente caso a etapa definida no <code>Pipeline</code> seja a mesma sempre (sem alteração de parâmetro);</li>
+    <li>Foi disponibilizado via Binder um Jupyter Notebook de acompanhamento, nele há detalhes que foram omitidos neste <em>post</em>.</li>
+  </ul>
+</div>
+
+<p><br></p>
+
+<hr />
+
+<h2 id="pipeline"><em>Pipeline</em></h2>
+
+<p>O <code>Pipeline</code> é um módulo do Scikit Learn (leia a documentação dele <a href="https://scikit-learn.org/stable/modules/generated/sklearn.pipeline.Pipeline.html">aqui</a>) que é usado para automatizar <kbd>etapas sequenciais</kbd>. Note que o <code>Pipeline</code> sempre executará as etapas na <kbd>mesma ordem</kbd> e as executará <kbd>sem exceção</kbd>. Além disso, o <code>Pipeline</code> foi concebido para ser executado diversas vezes, pois o objetivo primário dele  é testar/avaliar parâmetros e <em>classifiers</em>.</p>
+
+<p>Portanto, ao definir um <code>Pipeline</code> tenha em mente a utilidade de cada etapa definida nela e se isso realmente faz sentido estar dentro do <code>Pipeline</code>. Caso você tenha que repetir a mesma etapa para todas as simulações sem ter que ajustar nenhum parâmetro, pode ser um indicativo que essa etapa pode ser alocada antes do <code>Pipeline</code> com o é o caso da mudança de escala.</p>
+
+<p>A Figura 1 apresenta uma ilustração de diagramas de blocos do <code>Pipeline</code>, note que o <code>Scaler</code> será executado todas as vezes que o <code>Pipeline</code> também o for, logo se o Scaler não tiver nenhum parâmetro para ser ajustado ou testado, ele pode ser executado antes do <code>Pipeline</code>, conforme a Figura 2.</p>
+
+<p><center>
+<img src="/notebooks/images/blog/2019-03-22-como-usar-o-pipeline/figura_01_workflow_1.svg" alt="Figura 1 - Anaconda Navigator." width="100%" height="100%"/></p>
+
+<p><em>Figura 1 - Diagrama de Blocos do Pipeline com <em>Scaler</em>.</em></center></p>
+
+<p><center>
+<img src="/notebooks/images/blog/2019-03-22-como-usar-o-pipeline/figura_01_workflow_2.svg" alt="Figura 1 - Anaconda Navigator." width="100%" height="100%"/></p>
+
+<p><em>Figura 2 - Diagrama de Blocos do Pipeline sem <em>Scaler</em>.</em></center></p>
+
+<h4 id="jupyter-notebook">Jupyter Notebook</h4>
+
+<p>Foi feito um <a href="https://mybinder.org/v2/gh/AndersonUyekita/notebooks/master?filepath=blog/2019-03-22-como-usar-o-pipeline.pt.ipynb">Jupyter Notebook</a> (e disponibilizado pelo Binder) de acompanhamento do <em>post</em>, nele há diversos exemplos e alguns detalhes que foram omitidos neste <em>post</em>.</p>
+
+<h4 id="dataset"><em>Dataset</em></h4>
+
+<p>Para elucidação do <code>Pipeline</code>, será usado o <em>toy dataset</em> de câncer de mama que está presente no próprio Scikit Learn.</p>
+<div class="highlight"><pre style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-py" data-lang="py"><span style="color:#999;font-style:italic"># Importação do dataset usado como exemplo</span>
+<span style="color:#6ab825;font-weight:bold">from</span> <span style="color:#447fcf;text-decoration:underline">sklearn</span> <span style="color:#6ab825;font-weight:bold">import</span> datasets
+
+<span style="color:#999;font-style:italic"># Dados de Câncer de mama.</span>
+cancer = datasets.load_breast_cancer()
+
+<span style="color:#999;font-style:italic"># Criação do dataset features e vetor labels.</span>
+features = cancer.data
+labels = cancer.target</code></pre></div>
+<h4 id="classifier"><em>Classifier</em></h4>
+
+<p>Adota-se como algoritmo de classificação para esse exemplo o <a href="https://scikit-learn.org/stable/modules/generated/sklearn.linear_model.LogisticRegression.html"><em>Logistic Regression</em></a>.</p>
+<div class="highlight"><pre style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-py" data-lang="py"><span style="color:#999;font-style:italic"># Importação do Logistic Regression.</span>
+<span style="color:#6ab825;font-weight:bold">from</span> <span style="color:#447fcf;text-decoration:underline">sklearn.linear_model</span> <span style="color:#6ab825;font-weight:bold">import</span> LogisticRegression
+
+<span style="color:#999;font-style:italic"># Uso do constructor do AdaBoost para criar um classifier.</span>
+clf = LogisticRegression(random_state = <span style="color:#3677a9">42</span>,
+                         solver = <span style="color:#ed9d13">&#39;lbfgs&#39;</span>,
+                         multi_class = <span style="color:#ed9d13">&#39;multinomial&#39;</span>)</code></pre></div>
+<h4 id="etapas-do-pipeline">Etapas do Pipeline</h4>
+
+<p>Inicialmente será exposto etapa por etapa e posteriormente será criado o <code>Pipeline</code> para comparar os benefícios de usá-lo. Desta maneira, este item abordará:</p>
+
+<ul>
+<li>Mudança de Escala (propositalmente deixado no <code>Pipeline</code>);</li>
+<li>Diminuição de Dimensão, e;</li>
+<li>Treino e Previsão.</li>
+</ul>
+
+<h5 id="mudança-de-escala">Mudança de Escala</h5>
+
+<p>A mudança de escala é feita usando o módulo do <a href="https://scikit-learn.org/stable/modules/generated/sklearn.preprocessing.MinMaxScaler.html"><code>MinMaxScaler</code></a> que também é parte do Scikit Learn.</p>
+<div class="highlight"><pre style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-py" data-lang="py"><span style="color:#999;font-style:italic"># Importação do MinMaxScaler.</span>
+<span style="color:#6ab825;font-weight:bold">from</span> <span style="color:#447fcf;text-decoration:underline">sklearn.preprocessing</span> <span style="color:#6ab825;font-weight:bold">import</span> MinMaxScaler
+
+<span style="color:#999;font-style:italic"># Constructor para criar o objeto do MinMaxScaler.</span>
+scaler = MinMaxScaler()
+
+<span style="color:#999;font-style:italic"># Treino.</span>
+scaler.fit(features)
+
+<span style="color:#999;font-style:italic"># Transformação.</span>
+features_scaled = scaler.transform(features)</code></pre></div>
+<h5 id="redução-de-variáveis">Redução de Variáveis</h5>
+
+<p>A diminuição de <em>features</em> é feita usando a Análise de Componentes Principais (<a href="https://scikit-learn.org/stable/modules/generated/sklearn.decomposition.PCA.html"><code>PCA</code></a>), o Scikit Learn também possui um módulo dedicado para isso.</p>
+<div class="highlight"><pre style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-py" data-lang="py"><span style="color:#999;font-style:italic"># Importação do PCA.</span>
+<span style="color:#6ab825;font-weight:bold">from</span> <span style="color:#447fcf;text-decoration:underline">sklearn.decomposition</span> <span style="color:#6ab825;font-weight:bold">import</span> PCA
+
+<span style="color:#999;font-style:italic"># Uso do constructor para criar o objeto do PCA.</span>
+pca = PCA(n_components = <span style="color:#3677a9">10</span>)
+
+<span style="color:#999;font-style:italic"># Treino.</span>
+pca.fit(features_scaled)
+
+<span style="color:#999;font-style:italic"># Tranformação.</span>
+features_scaled_pca = pca.transform(features_scaled)</code></pre></div>
+<h5 id="treino-e-previsão">Treino e Previsão</h5>
+
+<p>Baseado no <em>classifer</em> <code>clf</code>, no <em>features dataset</em> e em <em>labels</em> será calculado a acurácia do <em>Logistic Regression</em>. Será utilizado o <a href="https://scikit-learn.org/stable/modules/generated/sklearn.model_selection.train_test_split.html"><code>train_test_split</code></a> para criar os <em>datasets</em> de treino e teste.</p>
+<div class="highlight"><pre style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-py" data-lang="py"><span style="color:#999;font-style:italic"># Importação do StratifiedShuffleSplit.</span>
+<span style="color:#6ab825;font-weight:bold">from</span> <span style="color:#447fcf;text-decoration:underline">sklearn.model_selection</span> <span style="color:#6ab825;font-weight:bold">import</span> train_test_split
+
+<span style="color:#999;font-style:italic"># Divisão dos features e labels em treino e teste.</span>
+features_train, features_test, labels_train, labels_test = train_test_split(features_scaled_pca,
+                                                                            labels,
+                                                                            test_size=<span style="color:#3677a9">0.33</span>,
+                                                                            random_state=<span style="color:#3677a9">42</span>)</code></pre></div>
+<p>Agora faremos o treino e a previsão.</p>
+<div class="highlight"><pre style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-py" data-lang="py"><span style="color:#999;font-style:italic"># Treino usando o dataset de treino.</span>
+clf.fit(features_train, labels_train)
+
+<span style="color:#999;font-style:italic"># Previsões usando o dataset de test.</span>
+pred = clf.predict(features_test)
+
+<span style="color:#999;font-style:italic"># Importação do módulo para cálculo do Accuracy.</span>
+<span style="color:#6ab825;font-weight:bold">from</span> <span style="color:#447fcf;text-decoration:underline">sklearn.metrics</span> <span style="color:#6ab825;font-weight:bold">import</span> accuracy_score
+
+<span style="color:#999;font-style:italic"># Avaliação.</span>
+accuracy_score(labels_test, pred)</code></pre></div>
+<pre><code>0.9787234042553191
+</code></pre>
+
+<p>Note que todas essas três etapas anteriores podem ser condensadas numa só ao criar um <code>Pipeline</code>. Os requisitos necessários para o <code>Pipeline</code> é a criação de uma lista de etapas, conforme essa apresentada abaixo.</p>
+<div class="highlight"><pre style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-py" data-lang="py"><span style="color:#999;font-style:italic"># Minha lista de etapas.</span>
+etapas_pipeline = [(<span style="color:#ed9d13">&#39;scaler&#39;</span>, scaler), <span style="color:#999;font-style:italic"># O scaler está definido na Etapa 5.1.1</span>
+                   (<span style="color:#ed9d13">&#39;pca&#39;</span>   , pca),    <span style="color:#999;font-style:italic"># O pca está definido na Etapa 5.1.2</span>
+                   (<span style="color:#ed9d13">&#39;clf&#39;</span>   , clf)]    <span style="color:#999;font-style:italic"># O clf está definido no item 4 e foi usado na Etapa 5.1.3</span></code></pre></div>
+<p>Note que estou usando os objetos criados nas etapas anteriores, mas eu posso usar o próprio <em>constructor</em>, logo atualizando a lista <code>etapas_pipeline</code>, tem-se:</p>
+<div class="highlight"><pre style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-py" data-lang="py"><span style="color:#999;font-style:italic"># Minha lista de etapas.</span>
+etapas_pipeline = [(<span style="color:#ed9d13">&#39;scaler&#39;</span>, MinMaxScaler()),                                     <span style="color:#999;font-style:italic"># Etapa 5.1.1</span>
+                   (<span style="color:#ed9d13">&#39;pca&#39;</span>   , PCA(n_components = <span style="color:#3677a9">10</span>)),                             <span style="color:#999;font-style:italic"># Etapa 5.1.2</span>
+                   (<span style="color:#ed9d13">&#39;clf&#39;</span>   , LogisticRegression(random_state = <span style="color:#3677a9">42</span>,                <span style="color:#999;font-style:italic"># Etapa 5.1.3</span>
+                                                 solver = <span style="color:#ed9d13">&#39;lbfgs&#39;</span>,
+                                                 multi_class = <span style="color:#ed9d13">&#39;multinomial&#39;</span>))]</code></pre></div>
+<p>Após a definição da lista de etapas, pode-se criar a partir do <em>constructor</em> do <code>Pipeline</code> o objeto <code>pipe</code>.</p>
+<div class="highlight"><pre style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-py" data-lang="py"><span style="color:#999;font-style:italic"># Importação do Pipeline</span>
+<span style="color:#6ab825;font-weight:bold">from</span> <span style="color:#447fcf;text-decoration:underline">sklearn.pipeline</span> <span style="color:#6ab825;font-weight:bold">import</span> Pipeline
+
+<span style="color:#999;font-style:italic"># Uso do constructor para criação do objeto do Pipeline.</span>
+pipe = Pipeline(etapas_pipeline)</code></pre></div>
+<p>Analogamente ao processo feito passo-a-passo, utilizarei o mesmo train_test_split para dividir <em>features</em> e <em>labels</em> em treino e teste.</p>
+<div class="highlight"><pre style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-py" data-lang="py"><span style="color:#999;font-style:italic"># Divisão dos features e labels em treino e teste.</span>
+features_train_2, features_test_2, labels_train_2, labels_test_2 = train_test_split(features,
+                                                                                    labels,
+                                                                                    test_size=<span style="color:#3677a9">0.33</span>,
+                                                                                    random_state=<span style="color:#3677a9">42</span>)</code></pre></div>
+<p>Por fim, consideramos o <code>pipe</code> como um objetivo parecido com um <em>classifier</em>, será treinado e depois utilizado para fazer previsões.</p>
+<div class="highlight"><pre style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-py" data-lang="py"><span style="color:#999;font-style:italic"># Treino do pipe.</span>
+pipe.fit(features_train_2, labels_train_2);
+
+<span style="color:#999;font-style:italic"># Fazendo previsões.</span>
+pred_2 = pipe.predict(features_test_2)
+
+<span style="color:#999;font-style:italic"># Calculando o accuracy.</span>
+accuracy_score(labels_test_2, pred_2)</code></pre></div>
+<pre><code>0.9787234042553191
+</code></pre>
+
+<p>Note que o <code>Pipeline</code> aplica <strong>ocultamente</strong> os processos <code>fit</code> e <code>transform</code> das primeiras duas etapas, deixando apenas a parte de <code>fit</code> e <code>predict</code> do <em>classifier</em>. Logo, é um <strong>requisito necessário</strong> para que o <code>Pipeline</code> funcione que as etapas que antecedem o <em>classifier</em> possuam esses dois métodos.</p>
+
+<div class="alert alert-warning" role="alert">
+  <p>Não há como ter dois <em>classifiers</em> como etapas do Pipeline, pois ele só admite um e deve ser a última etapa.</p>
+  <p>O motivo é simples: Os <em>classifiers</em> geralmente não possuem o método <code>transform</code>, o que é um requisito das etapas internas do <code>Pipeline</code>.</p>
+</div>
+
+<h4 id="múltiplos-classifiers">Múltiplos <em>Classifiers</em></h4>
+
+<p>A maneira de usar diversos <em>classifiers</em> no Pipeline é usando dois dicionários. O primeiro serve para armazenar os <em>classfiers</em> e o segundo os <em>tuples</em> requeridos pelo <code>Pipeline</code> funcionar.</p>
+
+<p>Dessa maneira, define-se o dicionário de <em>classifiers</em>:</p>
+<div class="highlight"><pre style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-py" data-lang="py"><span style="color:#999;font-style:italic"># Importação do Naïve Bayes.</span>
+<span style="color:#6ab825;font-weight:bold">from</span> <span style="color:#447fcf;text-decoration:underline">sklearn.naive_bayes</span> <span style="color:#6ab825;font-weight:bold">import</span> GaussianNB
+
+<span style="color:#999;font-style:italic"># Dicionário de classifiers.</span>
+meus_classifiers = {<span style="color:#ed9d13">&#39;logit&#39;</span>:(<span style="color:#ed9d13">&#39;lr&#39;</span>, LogisticRegression(random_state = <span style="color:#3677a9">42</span>,
+                                                      solver = <span style="color:#ed9d13">&#39;lbfgs&#39;</span>,
+                                                      multi_class = <span style="color:#ed9d13">&#39;multinomial&#39;</span>)),
+                    <span style="color:#ed9d13">&#39;bayes&#39;</span>:(<span style="color:#ed9d13">&#39;gnb&#39;</span>, GaussianNB())}</code></pre></div>
+<p>Observe que o dicionário <code>meus_classifiers</code> somente funcionará caso seja definido o <code>key</code>, caso contrário o <code>Pipeline</code> não conseguirá interpretá-lo.</p>
+
+<p>Agora, vamos inserir o dicionário <code>meus_classifiers</code> como um dos elementos de <code>etapas_pipeline</code>. A chave escolhida foi <code>logit</code>.</p>
+<div class="highlight"><pre style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-py" data-lang="py"><span style="color:#999;font-style:italic"># Minha lista de etapas com um dicionário aninhado.</span>
+etapas_pipeline_2 = [(<span style="color:#ed9d13">&#39;scaler&#39;</span>, MinMaxScaler()),
+                     (<span style="color:#ed9d13">&#39;pca&#39;</span>   , PCA(n_components = <span style="color:#3677a9">10</span>)),
+                      meus_classifiers[<span style="color:#ed9d13">&#39;logit&#39;</span>]]</code></pre></div>
+<p>Implicitamente, sabe-se que <code>meus_classifiers['logit']</code> tem o mesmo significado de:</p>
+<div class="highlight"><pre style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-py" data-lang="py">LogisticRegression(random_state = <span style="color:#3677a9">42</span>,
+                   solver = <span style="color:#ed9d13">&#39;lbfgs&#39;</span>,
+                   multi_class = <span style="color:#ed9d13">&#39;multinomial&#39;</span>)</code></pre></div>
+<p>Portanto, pode-se treinar e calcular as previsões.</p>
+<div class="highlight"><pre style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-py" data-lang="py"><span style="color:#999;font-style:italic"># Uso do constructor para criação do objeto do Pipeline.</span>
+pipe_2 = Pipeline(etapas_pipeline_2)
+
+<span style="color:#999;font-style:italic"># Treino do pipe.</span>
+pipe_2.fit(features_train_2, labels_train_2);
+
+<span style="color:#999;font-style:italic"># Fazendo previsões.</span>
+pred_4 = pipe.predict(features_test_2)
+
+<span style="color:#999;font-style:italic"># Calculando o accuracy.</span>
+accuracy_score(labels_test_2, pred_4)</code></pre></div>
+<pre><code>0.9840425531914894
+</code></pre>
+
+<p>Caso seja necessário a simulação para o <code>Naïve Bayes</code>, pode-se substituir a chave para <code>bayes</code> e executar novamente o treino e a previsão.</p>
+<div class="highlight"><pre style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-py" data-lang="py"><span style="color:#999;font-style:italic"># Uso do constructor para criação do objeto do Pipeline.</span>
+pipe_3 = Pipeline([(<span style="color:#ed9d13">&#39;scaler&#39;</span>, MinMaxScaler()),
+                   (<span style="color:#ed9d13">&#39;pca&#39;</span>   , PCA(n_components = <span style="color:#3677a9">10</span>)),
+                    meus_classifiers[<span style="color:#ed9d13">&#39;bayes&#39;</span>]])         <span style="color:#999;font-style:italic"># Estou usando o Naïve Bayes agora.</span>
+
+<span style="color:#999;font-style:italic"># Treino do pipe.</span>
+pipe_3.fit(features_train_2, labels_train_2);
+
+<span style="color:#999;font-style:italic"># Fazendo previsões.</span>
+pred_5 = pipe_3.predict(features_test_2)
+
+<span style="color:#999;font-style:italic"># Calculando o accuracy.</span>
+accuracy_score(labels_test_2, pred_5)</code></pre></div>
+<pre><code>0.9202127659574468
+</code></pre>
+
+<p>Note que o uso do <code>Pipeline</code> simplifica o processo de <em>tuning</em>, pois a aplicação de <code>fit</code> e <code>transform</code> são &ldquo;omitidos&rdquo; ao serem aplicados &ldquo;automaticamente&rdquo;.</p>
+
+<p><br></p>
+
+<hr />
+
+<div class="alert alert-info" role="alert">
+  <h4><strong><p class="text-info">Conclusões</p></strong></h4>
+  <p>O <code>Pipeline</code> pode automatizar grande parte do processo de calibragem do modelo e ser benéfico ao <em>workflow</em>, mas ele também pode ser usado de forma errada quando se adiciona etapas sem uma análise crítica. <strong>Um exemplo é o que foi feito nesse artigo</strong>, a etapa de mudança de escala das <em>features</em> foi feito sempre que o <code>Pipeline</code> foi executado.</p>
+  <p>Observe que convenientemente deve-se fazer a mudança de escala para otimizar o processo do <em>Gradient Descent</em> dos algoritmos que são baseados em distância, logo de forma geral é muito aconselhável fazer a mudança de escala para todos os algoritmos, pois não há nenhuma desvantagem em mudar a escala das <em>features</em>. Portanto, a remoção do <code>MinMaxScaler</code> da lista de etapas e executando ele antes do <code>Pipeline</code> resultará num algoritmo mais eficiente, pois ele será executado uma vez só.</p>
+  <p>Já para o caso do <code>PCA</code> é conveniente que se deixe dentro do <code>Pipeline</code>, pois dará a oportunidade de variarmos a quantidade de componentes principais (<code>n_components</code>).</p>
+  <p>Por fim, tenha em mente que para <em>datasets</em> pequenos o tempo de execução não é algo a se preocupar, mas em casos reais onde o tempo é um fator limitante, eliminar repetições desnecessárias é fundamental para otimizar os gastos dos seus recursos (tempo, dinheiro, esforço, paciência, etc.).</p>
+</div>
+
+                    
+                        
+
+<div class="social-share pt-4">
+        <h4>Share:</h4>
+        
+        <a class="resp-sharing-button__link" href="https://facebook.com/sharer/sharer.php?u=https%3a%2f%2fandersonuyekita.github.io%2fnotebooks%2fblog%2f2019%2f03%2f22%2fcomo-usar-o-pipeline%2f" target="_blank" rel="noopener" aria-label="">
+            <div class="resp-sharing-button resp-sharing-button--facebook resp-sharing-button--small"><div aria-hidden="true" class="resp-sharing-button__icon resp-sharing-button__icon--solid">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18.77 7.46H14.5v-1.9c0-.9.6-1.1 1-1.1h3V.5h-4.33C10.24.5 9.5 3.44 9.5 5.32v2.15h-3v4h3v12h5v-12h3.85l.42-4z"/></svg>
+            </div>
+        </div>
+    </a>
+
+    
+    <a class="resp-sharing-button__link" href="https://twitter.com/intent/tweet/?text=Como%20usar%20o%20Pipeline&amp;url=https%3a%2f%2fandersonuyekita.github.io%2fnotebooks%2fblog%2f2019%2f03%2f22%2fcomo-usar-o-pipeline%2f" target="_blank" rel="noopener" aria-label="">
+        <div class="resp-sharing-button resp-sharing-button--twitter resp-sharing-button--small"><div aria-hidden="true" class="resp-sharing-button__icon resp-sharing-button__icon--solid">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M23.44 4.83c-.8.37-1.5.38-2.22.02.93-.56.98-.96 1.32-2.02-.88.52-1.86.9-2.9 1.1-.82-.88-2-1.43-3.3-1.43-2.5 0-4.55 2.04-4.55 4.54 0 .36.03.7.1 1.04-3.77-.2-7.12-2-9.36-4.75-.4.67-.6 1.45-.6 2.3 0 1.56.8 2.95 2 3.77-.74-.03-1.44-.23-2.05-.57v.06c0 2.2 1.56 4.03 3.64 4.44-.67.2-1.37.2-2.06.08.58 1.8 2.26 3.12 4.25 3.16C5.78 18.1 3.37 18.74 1 18.46c2 1.3 4.4 2.04 6.97 2.04 8.35 0 12.92-6.92 12.92-12.93 0-.2 0-.4-.02-.6.9-.63 1.96-1.22 2.56-2.14z"/></svg>
+        </div>
+    </div>
+</a>
+
+
+<a class="resp-sharing-button__link" href="https://plus.google.com/share?url=https%3a%2f%2fandersonuyekita.github.io%2fnotebooks%2fblog%2f2019%2f03%2f22%2fcomo-usar-o-pipeline%2f" target="_blank" rel="noopener" aria-label="">
+    <div class="resp-sharing-button resp-sharing-button--google resp-sharing-button--small"><div aria-hidden="true" class="resp-sharing-button__icon resp-sharing-button__icon--solid">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M11.37 12.93c-.73-.52-1.4-1.27-1.4-1.5 0-.43.03-.63.98-1.37 1.23-.97 1.9-2.23 1.9-3.57 0-1.22-.36-2.3-1-3.05h.5c.1 0 .2-.04.28-.1l1.36-.98c.16-.12.23-.34.17-.54-.07-.2-.25-.33-.46-.33H7.6c-.66 0-1.34.12-2 .35-2.23.76-3.78 2.66-3.78 4.6 0 2.76 2.13 4.85 5 4.9-.07.23-.1.45-.1.66 0 .43.1.83.33 1.22h-.08c-2.72 0-5.17 1.34-6.1 3.32-.25.52-.37 1.04-.37 1.56 0 .5.13.98.38 1.44.6 1.04 1.84 1.86 3.55 2.28.87.23 1.82.34 2.8.34.88 0 1.7-.1 2.5-.34 2.4-.7 3.97-2.48 3.97-4.54 0-1.97-.63-3.15-2.33-4.35zm-7.7 4.5c0-1.42 1.8-2.68 3.9-2.68h.05c.45 0 .9.07 1.3.2l.42.28c.96.66 1.6 1.1 1.77 1.8.05.16.07.33.07.5 0 1.8-1.33 2.7-3.96 2.7-1.98 0-3.54-1.23-3.54-2.8zM5.54 3.9c.33-.38.75-.58 1.23-.58h.05c1.35.05 2.64 1.55 2.88 3.35.14 1.02-.08 1.97-.6 2.55-.32.37-.74.56-1.23.56h-.03c-1.32-.04-2.63-1.6-2.87-3.4-.13-1 .08-1.92.58-2.5zM23.5 9.5h-3v-3h-2v3h-3v2h3v3h2v-3h3"/></svg>
+    </div>
+</div>
+</a>
+
+
+<a class="resp-sharing-button__link" href="mailto:?subject=Como%20usar%20o%20Pipeline&amp;body=https%3a%2f%2fandersonuyekita.github.io%2fnotebooks%2fblog%2f2019%2f03%2f22%2fcomo-usar-o-pipeline%2f" target="_self" rel="noopener" aria-label="">
+    <div class="resp-sharing-button resp-sharing-button--email resp-sharing-button--small"><div aria-hidden="true" class="resp-sharing-button__icon resp-sharing-button__icon--solid">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M22 4H2C.9 4 0 4.9 0 6v12c0 1.1.9 2 2 2h20c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zM7.25 14.43l-3.5 2c-.08.05-.17.07-.25.07-.17 0-.34-.1-.43-.25-.14-.24-.06-.55.18-.68l3.5-2c.24-.14.55-.06.68.18.14.24.06.55-.18.68zm4.75.07c-.1 0-.2-.03-.27-.08l-8.5-5.5c-.23-.15-.3-.46-.15-.7.15-.22.46-.3.7-.14L12 13.4l8.23-5.32c.23-.15.54-.08.7.15.14.23.07.54-.16.7l-8.5 5.5c-.08.04-.17.07-.27.07zm8.93 1.75c-.1.16-.26.25-.43.25-.08 0-.17-.02-.25-.07l-3.5-2c-.24-.13-.32-.44-.18-.68s.44-.32.68-.18l3.5 2c.24.13.32.44.18.68z"/></svg>
+    </div>
+</div>
+</a>
+
+
+<a class="resp-sharing-button__link" href="https://reddit.com/submit/?url=https%3a%2f%2fandersonuyekita.github.io%2fnotebooks%2fblog%2f2019%2f03%2f22%2fcomo-usar-o-pipeline%2f&amp;resubmit=true&amp;title=Como%20usar%20o%20Pipeline" target="_blank" rel="noopener" aria-label="">
+    <div class="resp-sharing-button resp-sharing-button--reddit resp-sharing-button--small"><div aria-hidden="true" class="resp-sharing-button__icon resp-sharing-button__icon--solid">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M24 11.5c0-1.65-1.35-3-3-3-.96 0-1.86.48-2.42 1.24-1.64-1-3.75-1.64-6.07-1.72.08-1.1.4-3.05 1.52-3.7.72-.4 1.73-.24 3 .5C17.2 6.3 18.46 7.5 20 7.5c1.65 0 3-1.35 3-3s-1.35-3-3-3c-1.38 0-2.54.94-2.88 2.22-1.43-.72-2.64-.8-3.6-.25-1.64.94-1.95 3.47-2 4.55-2.33.08-4.45.7-6.1 1.72C4.86 8.98 3.96 8.5 3 8.5c-1.65 0-3 1.35-3 3 0 1.32.84 2.44 2.05 2.84-.03.22-.05.44-.05.66 0 3.86 4.5 7 10 7s10-3.14 10-7c0-.22-.02-.44-.05-.66 1.2-.4 2.05-1.54 2.05-2.84zM2.3 13.37C1.5 13.07 1 12.35 1 11.5c0-1.1.9-2 2-2 .64 0 1.22.32 1.6.82-1.1.85-1.92 1.9-2.3 3.05zm3.7.13c0-1.1.9-2 2-2s2 .9 2 2-.9 2-2 2-2-.9-2-2zm9.8 4.8c-1.08.63-2.42.96-3.8.96-1.4 0-2.74-.34-3.8-.95-.24-.13-.32-.44-.2-.68.15-.24.46-.32.7-.18 1.83 1.06 4.76 1.06 6.6 0 .23-.13.53-.05.67.2.14.23.06.54-.18.67zm.2-2.8c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm5.7-2.13c-.38-1.16-1.2-2.2-2.3-3.05.38-.5.97-.82 1.6-.82 1.1 0 2 .9 2 2 0 .84-.53 1.57-1.3 1.87z"/></svg>
+    </div>
+</div>
+</a>
+
+
+<a class="resp-sharing-button__link" href="whatsapp://send?text=Como%20usar%20o%20Pipeline%20https%3a%2f%2fandersonuyekita.github.io%2fnotebooks%2fblog%2f2019%2f03%2f22%2fcomo-usar-o-pipeline%2f" target="_blank" rel="noopener" aria-label="">
+    <div class="resp-sharing-button resp-sharing-button--whatsapp resp-sharing-button--small"><div aria-hidden="true" class="resp-sharing-button__icon resp-sharing-button__icon--solid">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.1 3.9C17.9 1.7 15 .5 12 .5 5.8.5.7 5.6.7 11.9c0 2 .5 3.9 1.5 5.6L.6 23.4l6-1.6c1.6.9 3.5 1.3 5.4 1.3 6.3 0 11.4-5.1 11.4-11.4-.1-2.8-1.2-5.7-3.3-7.8zM12 21.4c-1.7 0-3.3-.5-4.8-1.3l-.4-.2-3.5 1 1-3.4L4 17c-1-1.5-1.4-3.2-1.4-5.1 0-5.2 4.2-9.4 9.4-9.4 2.5 0 4.9 1 6.7 2.8 1.8 1.8 2.8 4.2 2.8 6.7-.1 5.2-4.3 9.4-9.5 9.4zm5.1-7.1c-.3-.1-1.7-.9-1.9-1-.3-.1-.5-.1-.7.1-.2.3-.8 1-.9 1.1-.2.2-.3.2-.6.1s-1.2-.5-2.3-1.4c-.9-.8-1.4-1.7-1.6-2-.2-.3 0-.5.1-.6s.3-.3.4-.5c.2-.1.3-.3.4-.5.1-.2 0-.4 0-.5C10 9 9.3 7.6 9 7c-.1-.4-.4-.3-.5-.3h-.6s-.4.1-.7.3c-.3.3-1 1-1 2.4s1 2.8 1.1 3c.1.2 2 3.1 4.9 4.3.7.3 1.2.5 1.6.6.7.2 1.3.2 1.8.1.6-.1 1.7-.7 1.9-1.3.2-.7.2-1.2.2-1.3-.1-.3-.3-.4-.6-.5z"/></svg>
+    </div>
+</div>
+</a>
+
+
+<a class="resp-sharing-button__link" href="https://telegram.me/share/url?text=Como%20usar%20o%20Pipeline&amp;url=https%3a%2f%2fandersonuyekita.github.io%2fnotebooks%2fblog%2f2019%2f03%2f22%2fcomo-usar-o-pipeline%2f" target="_blank" rel="noopener" aria-label="">
+    <div class="resp-sharing-button resp-sharing-button--telegram resp-sharing-button--small"><div aria-hidden="true" class="resp-sharing-button__icon resp-sharing-button__icon--solid">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M.707 8.475C.275 8.64 0 9.508 0 9.508s.284.867.718 1.03l5.09 1.897 1.986 6.38a1.102 1.102 0 0 0 1.75.527l2.96-2.41a.405.405 0 0 1 .494-.013l5.34 3.87a1.1 1.1 0 0 0 1.046.135 1.1 1.1 0 0 0 .682-.803l3.91-18.795A1.102 1.102 0 0 0 22.5.075L.706 8.475z"/></svg>
+    </div>
+</div>
+</a>
+
+</div>
+                    
+                    <div id="disqus_thread"></div>
+<script>
+(function() {
+var d = document, s = d.createElement('script');
+s.src = 'https://andersonuyekita.disqus.com/embed.js';
+s.setAttribute('data-timestamp', +new Date());
+(d.head || d.body).appendChild(s);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+        </div><!-- end Contact Area -->
+<footer id="footer" class="bg-one">
+	<div class="container">
+		<div class="row wow fadeInUp" data-wow-duration="500ms">
+			<div class="col-xl-12">
+
+				<!-- Footer Social Links -->
+				<div class="social-icon">
+					<ul class="list-inline">
+						
+						<li class="list-inline-item"><a href="#"><i class="tf-ion-social-facebook"></i></a></li>
+						
+						<li class="list-inline-item"><a href="#"><i class="tf-ion-social-twitter"></i></a></li>
+						
+						<li class="list-inline-item"><a href="#"><i class="tf-ion-social-google-outline"></i></a></li>
+						
+						<li class="list-inline-item"><a href="#"><i class="tf-ion-social-youtube"></i></a></li>
+						
+						<li class="list-inline-item"><a href="andersonuyekita"><i class="tf-ion-social-linkedin"></i></a></li>
+						
+						<li class="list-inline-item"><a href="#"><i class="tf-ion-social-dribbble-outline"></i></a></li>
+						
+						<li class="list-inline-item"><a href="#"><i class="tf-ion-social-pinterest-outline"></i></a></li>
+						
+					</ul>
+				</div>
+
+				<!-- copyright -->
+				<div class="copyright text-center">
+					<a href="https://andersonuyekita.github.io/notebooks/">
+						<img src="https://andersonuyekita.github.io/notebooks/images/logo.svg" alt="Meghna" />
+					</a>
+					<br>
+
+					<p>Design And Developed by <a href="http://www.themefisher.com">  Themefisher Team  </a>. Copyright &copy; <script>
+							document.write(new Date().getFullYear())
+						</script>. All Rights Reserved.</p>
+				</div>
+			</div>
+		</div>
+	</div>
+</footer>
+<!-- /footer -->
+
+<!-- Essential Scripts -->
+
+		<!-- Main jQuery -->
+		<script type="text/javascript" src="https://andersonuyekita.github.io/notebooks/plugins/jquery/dist/jquery.min.js"></script>
+		<!-- Bootstrap 4.3 + Popper -->
+		<script type="text/javascript" src="https://andersonuyekita.github.io/notebooks/plugins/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+		<!-- Slick Carousel -->
+		<script type="text/javascript" src="https://andersonuyekita.github.io/notebooks/plugins/slick-carousel/slick/slick.min.js"></script>
+		<!-- Portfolio Filtering -->
+		<script type="text/javascript" src="https://andersonuyekita.github.io/notebooks/plugins/mixitup/mixitup.min.js"></script>
+		<!-- Magnific popup -->
+		<script type="text/javascript" src="https://andersonuyekita.github.io/notebooks/plugins/magnific-popup/dist/jquery.magnific-popup.min.js"></script>
+		<!-- Google Map API -->
+		<script type="text/javascript"  src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCcABaamniA6OL5YvYSpB3pFMNrXwXnLwU&amp;libraries=places"></script>
+		<!-- Number Counter Script -->
+		<script type="text/javascript" src="https://andersonuyekita.github.io/notebooks/plugins/count-to/jquery.countTo.js"></script>
+		<!-- wow.min Script -->
+		<script type="text/javascript" src="https://andersonuyekita.github.io/notebooks/plugins/wow/dist/wow.min.js"></script>
+		<!-- Scroll behavior polyfill -->
+		
+		<script src="https://andersonuyekita.github.io/notebooks/js/scroll-behavior-polyfill.min.js"></script>
+		<!-- Sweet Alert -->
+		<script type="text/javascript" src="https://andersonuyekita.github.io/notebooks/plugins/sweet-alert/sweetalert.min.js"></script>
+		<!-- Custom js -->
+		
+		<script src="https://andersonuyekita.github.io/notebooks/js/script.min.js"></script>
+		<!-- google analitycs -->
+		<script>
+				(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+				(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+				m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+				})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+				ga('create', 'UA-136946195-1', 'auto');
+				ga('send', 'pageview');
+		</script>
+
+
+              <script src="https://unpkg.com/ionicons@4.5.5/dist/ionicons.js"></script>
+
+              <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+
+    </body>
+</html></body>
+</html>

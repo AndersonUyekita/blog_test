@@ -6,63 +6,75 @@
     <description>Recent content on AH Uyekita</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 23 Mar 2019 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 28 Mar 2019 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://andersonuyekita.github.io/notebooks/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
+      <title>criei um arquetipo portfolio</title>
+      <link>https://andersonuyekita.github.io/notebooks/post/2019/03/28/criei-um-arquetipo-portfolio/</link>
+      <pubDate>Thu, 28 Mar 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://andersonuyekita.github.io/notebooks/post/2019/03/28/criei-um-arquetipo-portfolio/</guid>
+      <description>Teste som som som
+##
+1 2 3
+Card title Card subtitle Some quick example text to build on the card title and make up the bulk of the card&#39;s content.</description>
+    </item>
+    
+    <item>
       <title>Usando GridSearchCV e Pipeline conjuntamente</title>
-      <link>https://andersonuyekita.github.io/notebooks/blog/usando-gridsearchcv-e-pipeline-conjuntamente/</link>
+      <link>https://andersonuyekita.github.io/notebooks/blog/2019/03/23/usando-gridsearchcv-e-pipeline-conjuntamente/</link>
       <pubDate>Sat, 23 Mar 2019 00:00:00 +0000</pubDate>
       
-      <guid>https://andersonuyekita.github.io/notebooks/blog/usando-gridsearchcv-e-pipeline-conjuntamente/</guid>
+      <guid>https://andersonuyekita.github.io/notebooks/blog/2019/03/23/usando-gridsearchcv-e-pipeline-conjuntamente/</guid>
       <description>O uso conjunto do
 Resumo</description>
     </item>
     
     <item>
       <title>Como usar o Pipeline</title>
-      <link>https://andersonuyekita.github.io/notebooks/blog/como-usar-o-pipeline/</link>
+      <link>https://andersonuyekita.github.io/notebooks/blog/2019/03/22/como-usar-o-pipeline/</link>
       <pubDate>Fri, 22 Mar 2019 00:00:00 +0000</pubDate>
       
-      <guid>https://andersonuyekita.github.io/notebooks/blog/como-usar-o-pipeline/</guid>
+      <guid>https://andersonuyekita.github.io/notebooks/blog/2019/03/22/como-usar-o-pipeline/</guid>
       <description>O Pipeline assim como o GridSearchCV são módulos para automatizar processos repetitivos que muitas vezes permeia o processo de tuning de Machine Learning; Este post abordará exclusivamente como implementar o uso do Pipeline e quando ele deve ser usado ou evitado.</description>
     </item>
     
     <item>
       <title>Como usar o GridSearchCV</title>
-      <link>https://andersonuyekita.github.io/notebooks/blog/como-usar-o-gridsearchcv/</link>
+      <link>https://andersonuyekita.github.io/notebooks/blog/2019/03/21/como-usar-o-gridsearchcv/</link>
       <pubDate>Thu, 21 Mar 2019 00:00:00 +0000</pubDate>
       
-      <guid>https://andersonuyekita.github.io/notebooks/blog/como-usar-o-gridsearchcv/</guid>
+      <guid>https://andersonuyekita.github.io/notebooks/blog/2019/03/21/como-usar-o-gridsearchcv/</guid>
       <description>O GridSearchCV é uma ferramenta usada para automatizar o processo de ajuste dos parâmetros de um algoritmo, pois ele fará de maneira sistemática diversas combinações dos parâmetros e depois de avaliá-los os armazenará num único objeto.</description>
     </item>
     
     <item>
       <title>Atualizando cross_validation para model_selection</title>
-      <link>https://andersonuyekita.github.io/notebooks/blog/migrando-cross-validation-para-model-selection/</link>
+      <link>https://andersonuyekita.github.io/notebooks/blog/2019/03/20/migrando-cross-validation-para-model-selection/</link>
       <pubDate>Wed, 20 Mar 2019 00:00:00 +0000</pubDate>
       
-      <guid>https://andersonuyekita.github.io/notebooks/blog/migrando-cross-validation-para-model-selection/</guid>
+      <guid>https://andersonuyekita.github.io/notebooks/blog/2019/03/20/migrando-cross-validation-para-model-selection/</guid>
       <description>As versões recentes de Scikit Learn (0.23.0) não possuem mais o módulo cross_validation, desta maneira algumas aplicações de Python podem ter o seu funcionamento afetado.</description>
     </item>
     
     <item>
       <title>Como criar um Blogdown</title>
-      <link>https://andersonuyekita.github.io/notebooks/blog/como-criar-um-blogdown/</link>
+      <link>https://andersonuyekita.github.io/notebooks/blog/2019/03/20/como-criar-um-blogdown/</link>
       <pubDate>Wed, 20 Mar 2019 00:00:00 +0000</pubDate>
       
-      <guid>https://andersonuyekita.github.io/notebooks/blog/como-criar-um-blogdown/</guid>
+      <guid>https://andersonuyekita.github.io/notebooks/blog/2019/03/20/como-criar-um-blogdown/</guid>
       <description>Esse é o primeiro post deste Blogdown e se destinará basicamente a documentar como ele foi criado.</description>
     </item>
     
     <item>
       <title>Criando um Ambiente Python 2</title>
-      <link>https://andersonuyekita.github.io/notebooks/blog/criando-um-ambiente-python-2/</link>
+      <link>https://andersonuyekita.github.io/notebooks/blog/2019/03/20/criando-um-ambiente-python-2/</link>
       <pubDate>Wed, 20 Mar 2019 00:00:00 +0000</pubDate>
       
-      <guid>https://andersonuyekita.github.io/notebooks/blog/criando-um-ambiente-python-2/</guid>
+      <guid>https://andersonuyekita.github.io/notebooks/blog/2019/03/20/criando-um-ambiente-python-2/</guid>
       <description>Esse post aborda a criação de um novo ambiente no Anaconda, na qual possibilitará ao usuário a usar diferentes versões de Python numa mesma máquina.</description>
     </item>
     

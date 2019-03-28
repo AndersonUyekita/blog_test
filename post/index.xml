@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Posts on AH Uyekita</title>
+    <link>https://andersonuyekita.github.io/notebooks/post/</link>
+    <description>Recent content in Posts on AH Uyekita</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Thu, 28 Mar 2019 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://andersonuyekita.github.io/notebooks/post/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>criei um arquetipo portfolio</title>
+      <link>https://andersonuyekita.github.io/notebooks/post/2019/03/28/criei-um-arquetipo-portfolio/</link>
+      <pubDate>Thu, 28 Mar 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://andersonuyekita.github.io/notebooks/post/2019/03/28/criei-um-arquetipo-portfolio/</guid>
+      <description>Teste som som som
+##
+1 2 3
+Card title Card subtitle Some quick example text to build on the card title and make up the bulk of the card&#39;s content.</description>
+    </item>
+    
+  </channel>
+</rss>
