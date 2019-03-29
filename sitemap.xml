@@ -3,11 +3,6 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>https://andersonuyekita.github.io/notebooks/post/2019/03/28/criei-um-arquetipo-portfolio/</loc>
-    <lastmod>2019-03-28T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
     <loc>https://andersonuyekita.github.io/notebooks/blog/2019/03/23/usando-gridsearchcv-e-pipeline-conjuntamente/</loc>
     <lastmod>2019-03-23T00:00:00+00:00</lastmod>
   </url>
@@ -51,37 +46,37 @@
   
   <url>
     <loc>https://andersonuyekita.github.io/notebooks/</loc>
-    <lastmod>2019-03-28T00:00:00+00:00</lastmod>
+    <lastmod>2019-03-23T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://andersonuyekita.github.io/notebooks/author/ah-uyekita/</loc>
-    <lastmod>2019-03-28T00:00:00+00:00</lastmod>
+    <lastmod>2019-03-23T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://andersonuyekita.github.io/notebooks/tags/anaconda/</loc>
-    <lastmod>2019-03-28T00:00:00+00:00</lastmod>
+    <lastmod>2019-03-20T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://andersonuyekita.github.io/notebooks/author/</loc>
-    <lastmod>2019-03-28T00:00:00+00:00</lastmod>
+    <lastmod>2019-03-23T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://andersonuyekita.github.io/notebooks/categories/blogdown/</loc>
+    <lastmod>2019-03-23T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://andersonuyekita.github.io/notebooks/tags/blogdown/</loc>
     <lastmod>2019-03-20T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://andersonuyekita.github.io/notebooks/categories/blogdown/</loc>
-    <lastmod>2019-03-28T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -93,18 +88,12 @@
   
   <url>
     <loc>https://andersonuyekita.github.io/notebooks/categories/</loc>
-    <lastmod>2019-03-28T00:00:00+00:00</lastmod>
+    <lastmod>2019-03-23T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://andersonuyekita.github.io/notebooks/en/</loc>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://andersonuyekita.github.io/notebooks/post/</loc>
-    <lastmod>2019-03-28T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -122,7 +111,7 @@
   
   <url>
     <loc>https://andersonuyekita.github.io/notebooks/tags/</loc>
-    <lastmod>2019-03-28T00:00:00+00:00</lastmod>
+    <lastmod>2019-03-20T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
